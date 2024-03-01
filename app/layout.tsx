@@ -7,7 +7,7 @@ import "./globals.css";
 const inconsolata = Inconsolata({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "> log_",
+  title: "> log _",
   description: "Whatever it was on my head that day.",
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inconsolata.className}>
+      <body className={`${inconsolata.className} bg-zinc-800`}>
         <Header />
         {children}
         <Footer />
