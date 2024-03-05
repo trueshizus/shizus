@@ -6,7 +6,9 @@ And also an update on the reading of the posts. Right now I just wanted to throw
 
 But there was a problem in the way I was loading the files. First, they were being displayed in A-Z and I wanted to be Z-A. For that I added a `.reverse()` at the end of the function that was grouping all files. But this had no effect on the order of the imports. So the files where still rendering as A-Z.
 
-After doing some debugging I notice my error: I should not be using forEach to group promises. So here is the before and after:
+After doing some debugging I notice my error: I should not be using forEach to group promises. 
+
+Before:
 
 ```typescript
 const getPost = async () => {
@@ -29,9 +31,8 @@ const getPost = async () => {
 
   return post;
 };
-
 ```
-
+and after:
 
 ```typescript
 const getPost = async () => {
