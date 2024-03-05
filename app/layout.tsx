@@ -18,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inconsolata.className} bg-zinc-800`}>
+      <body
+        className={`${inconsolata.className} bg-zinc-800 max-w-4xl mx-auto px-4`}
+      >
         <Header />
         {children}
         <Footer />

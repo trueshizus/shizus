@@ -8,6 +8,9 @@ const config: Config = {
     "./mdx-components.tsx",
   ],
   theme: {
+    container: {
+      padding: { lg: "20rem" },
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
