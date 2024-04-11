@@ -1,12 +1,12 @@
 # Another Day
 
-So, today i'm going to be focusing on the fonts, the layout just and setting some global configurations.
+So, today I'm going to be focusing on the fonts, the layout just, and setting some global configurations.
 
 And also an update on the reading of the posts. Right now I just wanted to throw whatever I want to post into a folder called 'entries'. Each file in this folder is an '.mdx' file and the name is the date in which I started writing.
 
-But there was a problem in the way I was loading the files. First, they were being displayed in A-Z and I wanted to be Z-A. For that I added a `.reverse()` at the end of the function that was grouping all files. But this had no effect on the order of the imports. So the files where still rendering as A-Z.
+However, there was a problem with the way I was loading the files. First, they were being displayed in A-Z and I wanted to be Z-A. For that, I added a `.reverse()` at the end of the function that was grouping all files. But this did not affect the order of the imports. So the files were still rendering as A-Z.
 
-After doing some debugging I notice my error: I should not be using forEach to group promises.
+After doing some debugging I noticed my error: I should not be using forEach to group promises.
 
 Before:
 
@@ -59,4 +59,4 @@ const getPost = async () => {
 };
 ```
 
-And now it works. Lesson of the day: [Do not use forEach with async-await.](https://gist.github.com/joeytwiddle/37d2085425c049629b80956d3c618971#file-async-await-foreach-alternatives-md)
+And now it works. The lesson of the day: [Do not use forEach with async-await.](https://gist.github.com/joeytwiddle/37d2085425c049629b80956d3c618971#file-async-await-foreach-alternatives-md)
