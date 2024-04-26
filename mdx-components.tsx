@@ -21,11 +21,16 @@ function CodeBlock({ className = "", children }: CodeBlockProps) {
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    h1: ({ children }) => <h1 className="text-3xl mb-2">{children}</h1>,
-    p: ({ children }) => <p className="text-lg mb-1">{children}</p>,
+    h1: ({ children }) => (
+      <h1 className="text-3xl my-2 font-mono ">{children}</h1>
+    ),
+    p: ({ children }) => <p className="text-lg mb-1 px-1 py-2">{children}</p>,
     code: ({ children }) => <b className="bg-zinc-200">{children}</b>,
     ul: ({ children }) => (
-      <ul className="list-disc ml-6 text-lgg">{children}</ul>
+      <ul className="list-disc ml-6 text-lg">{children}</ul>
+    ),
+    ol: ({ children }) => (
+      <ol className="list-decimal ml-6 text-lg">{children}</ol>
     ),
     pre: ({ children }) =>
       React.isValidElement(children) && <CodeBlock {...children.props} />,

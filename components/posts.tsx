@@ -26,7 +26,7 @@ export default async function Posts() {
   const posts = await getPost();
 
   return posts.map(({ filename, content }) => (
-    <article key={filename} className="bg-zinc-300 px-8 py-4">
+    <article key={filename} className="bg-zinc-300 px-8 pt-4 pb-8">
       <small>{filename.split(".")[0]}</small>
       {content}
     </article>
