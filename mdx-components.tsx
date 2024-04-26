@@ -24,6 +24,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h1: ({ children }) => <h1 className="text-3xl mb-2">{children}</h1>,
     p: ({ children }) => <p className="text-lg mb-1">{children}</p>,
     code: ({ children }) => <b className="bg-zinc-200">{children}</b>,
+    ul: ({ children }) => (
+      <ul className="list-disc ml-6 text-lgg">{children}</ul>
+    ),
     pre: ({ children }) =>
       React.isValidElement(children) && <CodeBlock {...children.props} />,
   };
