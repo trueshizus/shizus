@@ -1,0 +1,28 @@
+import Image from "@/components/mdx-image";
+import sample from "@/public/images/reddit-api-docs.png";
+
+# Generating API Clients
+
+I have seen different ways of integrating with and external API. Given the how they document their API:
+
+<Image src={sample} />
+
+I would like to be able to use it like this:
+
+```typescript
+const config = {
+    clientId: 'my-client-id',
+    clientSecret: 'my-client',
+}
+const client = new RedditClient({
+    config,
+});
+
+const subreddit = client.getSubreddit('javascript');
+const listings = subreddit.listings();
+```
+
+To do so I would like to try one of these libraries: 
+- https://www.zodios.org
+- https://ts-rest.com
+
