@@ -33,6 +33,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <ol className="list-decimal ml-6 text-lg">{children}</ol>
     ),
     pre: ({ children }) =>
-      React.isValidElement(children) && <CodeBlock {...children.props} />,
+      <CodeBlock {...children.props} />,
   };
 }
