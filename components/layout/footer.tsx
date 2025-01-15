@@ -1,3 +1,3 @@
 export default function Footer() {
-  return <footer>2024</footer>;
+  return <footer className="text-center my-2">2025</footer>;
 }

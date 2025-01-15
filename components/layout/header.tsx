@@ -1,13 +1,10 @@
+import Link from "next/link";
+
 export default function Header() {
   return (
-    <header>
-      <p>shizus.dev</p>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/logs">Logs</a></li>
-        </ul>
-      </nav>
+    <header className="flex justify-between items-center my-2">
+      <Link href="/" className="text-2xl font-bold">shizus.dev</Link>
+      <Link href="/logs">Logs</Link>
     </header>
   );
 }
