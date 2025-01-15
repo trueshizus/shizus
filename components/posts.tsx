@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 
-const directoryPath = path.join("./entries");
+const directoryPath = path.join("./app/logs/entries");
 
 const getPost = async () => {
   let posts: { filename: string; content: React.ReactElement }[] = [];
@@ -12,7 +12,7 @@ const getPost = async () => {
       .filter((filename) => filename.endsWith(".mdx"));
 
     for (const file of files) {
-      const { default: Component } = await import(`@/entries/${file}`);
+      const { default: Component } = await import(`../app/logs/entries/${file}`);
       posts.push({ filename: file, content: <Component /> });
     }
   } catch (err) {

@@ -1,10 +1,13 @@
 export default function Header() {
   return (
     <header>
-      <p className="text-3xl text-zinc-100 my-6">
-        {`> log `}
-        <span className="animate-pulse">_</span>
-      </p>
+      <p>shizus.dev</p>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/logs">Logs</a></li>
+        </ul>
+      </nav>
     </header>
   );
 }
