@@ -1,3 +1,5 @@
+import Posts from "@/components/posts";
+
 export default function Page() {
-  return <div>something</div>;
+  return <div><Posts /></div>;
 }
