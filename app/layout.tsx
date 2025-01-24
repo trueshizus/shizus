@@ -8,7 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 const inconsolata = Inconsolata({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "> log _",
+  title: "shizus.dev",
   description: "Whatever it was on my head that day.",
 };
 
@@ -18,13 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inconsolata.className} bg-zinc-800 max-w-3xl mx-auto px-4`}
-      >
-        <Header />
+    <html lang="en" className="h-full">
+      <body className="h-full">
         {children}
-        <Footer />
+
         <Analytics />
         <SpeedInsights />
       </body>
