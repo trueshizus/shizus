@@ -1,11 +1,15 @@
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
 import type { Metadata } from "next";
-import { Inconsolata } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-const inconsolata = Inconsolata({ subsets: ["latin"] });
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "shizus.dev",
@@ -18,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body className="h-full">
+    <html lang="en" className={spaceMono.className}>
+      <body className="h-full bg-zinc-900">
         {children}
 
         <Analytics />

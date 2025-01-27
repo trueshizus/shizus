@@ -18,7 +18,7 @@ type ListComponentProps = {
 
 // Text components
 const Paragraph = ({ children }: TextComponentProps) => (
-  <p className="text-lg mb-1 px-1 py-2">{children}</p>
+  <p className="text-md mb-1 px-1 py-2">{children}</p>
 );
 
 const InlineCode = ({ children }: TextComponentProps) => (
@@ -26,23 +26,28 @@ const InlineCode = ({ children }: TextComponentProps) => (
 );
 
 // Heading components
-const Heading1 = ({ children }: HeadingProps) => (
-  <h1 className="text-2xl my-2 font-mono">{children}</h1>
+const H1 = ({ children }: HeadingProps) => (
+  <h1 className="text-xl my-2 font-mono">{children}</h1>
+);
+
+const H2 = ({ children }: HeadingProps) => (
+  <h2 className="text-md my-2 font-mono">{children}</h2>
 );
 
 // List components
 const UnorderedList = ({ children }: ListComponentProps) => (
-  <ul className="list-disc ml-6 text-lg">{children}</ul>
+  <ul className="list-disc ml-6 text-sm">{children}</ul>
 );
 
 const OrderedList = ({ children }: ListComponentProps) => (
-  <ol className="list-decimal ml-6 text-lg">{children}</ol>
+  <ol className="list-decimal ml-6 text-sm">{children}</ol>
 );
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
-    h1: Heading1,
+    h1: H1,
+    h2: H2,
     p: Paragraph,
     code: InlineCode,
     ul: UnorderedList,
