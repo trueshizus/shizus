@@ -22,7 +22,7 @@ const Paragraph = ({ children }: TextComponentProps) => (
 );
 
 const InlineCode = ({ children }: TextComponentProps) => (
-  <b className="bg-zinc-200">{children}</b>
+  <b>{children}</b>
 );
 
 // Heading components
