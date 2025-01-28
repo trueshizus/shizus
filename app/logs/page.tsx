@@ -1,7 +1,8 @@
-import Post from "@/components/post";
+
 import Terminal from "@/components/Terminal";
 import path from "path";
 import fs from "fs";
+import Post from "@/components/Post";
 
 const directoryPath = path.join("./app/logs/entries");
 
