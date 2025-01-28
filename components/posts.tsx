@@ -26,7 +26,7 @@ export default async function Posts() {
   const posts = await getPost();
 
   return posts.map(({ filename, content }) => (
-    <article key={filename} className=" px-8 py-4 border-b border-zinc-200">
+    <article key={filename} className="md:px-8 md:py-8 px-4 py-4 border-b border-zinc-200">
       <small className="text-zinc-500 text-xs">$ cat ./{filename}</small>
       {content}
     </article>
