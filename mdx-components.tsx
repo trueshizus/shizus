@@ -18,7 +18,7 @@ type ListComponentProps = {
 
 // Text components
 const Paragraph = ({ children }: TextComponentProps) => (
-  <p className="text-md mb-1 px-1 py-2">{children}</p>
+  <p className="text-sm my-2">{children}</p>
 );
 
 const InlineCode = ({ children }: TextComponentProps) => (
@@ -27,11 +27,15 @@ const InlineCode = ({ children }: TextComponentProps) => (
 
 // Heading components
 const H1 = ({ children }: HeadingProps) => (
-  <h1 className="text-xl my-2 font-mono">{children}</h1>
+  <h1 className="text-xl font-mono font-bold my-1">{children}</h1>
 );
 
 const H2 = ({ children }: HeadingProps) => (
-  <h2 className="text-md my-2 font-mono">{children}</h2>
+  <h2 className="text-md font-mono font-bold my-1">{children}</h2>
+);
+
+const H3 = ({ children }: HeadingProps) => (
+  <h3 className="text-sm font-mono font-bold my-1">{children}</h3>
 );
 
 // List components
@@ -48,6 +52,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ...components,
     h1: H1,
     h2: H2,
+    h3: H3,
     p: Paragraph,
     code: InlineCode,
     ul: UnorderedList,
