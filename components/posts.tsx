@@ -27,7 +27,7 @@ export default async function Posts() {
 
   return posts.map(({ filename, content }) => (
     <article key={filename} className=" px-8 py-4 border-b border-zinc-200">
-      <small>{filename.split(".")[0]}</small>
+      <small className="text-zinc-500 text-xs">$ cat ./{filename}</small>
       {content}
     </article>
   ));
