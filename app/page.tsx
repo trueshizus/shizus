@@ -1,5 +1,5 @@
 import CV from "@/public/cv.mdx";
-import Terminal from "@/components/Terminal";
+import Terminal from "@/components/terminal";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import React from "react";
-import { CodeBlock } from "./components/CodeBlock";
+import { CodeBlock } from "./components/code-blocks";
 
 
 // Define types for custom MDX components
