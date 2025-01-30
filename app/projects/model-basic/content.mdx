@@ -1,6 +1,35 @@
 
 # Model Basics
 
-I've been using and interacting AI models since they appeared. It show me a glimps into what can be created with computers and it remindedme to those years when I was a kid a saw a computer for the first time. I saw magic there. I want to know how the trick is done.
 
-$\sqrt{a^2 + b^2}$
+I've been using and interacting with AI models since they first appeared. They gave me a glimpse into what can be created with computers, reminding me of those early years when I was a kid and saw a computer for the first time. I saw magic in it. Now, I want to understand how the trick is done.
+
+I do not have formal training on AI but I have some basic knowledge of programming and linear algebra. So, let's start by building the fundations of a language model.
+
+I want to create a function that given a model and a string, returns a word. The most likely word to come up after the word I sent.
+
+```ts 
+const result = predict(model, 'Hello')
+console.log(result)
+```
+Should print: 
+```bash
+world!
+```
+
+This could be represented as the following:
+
+
+$$\left[ result \right] = \left[ model \right]\left[ input \right]$$
+
+Where `result`, `model` and `input` are matrices.
+
+<Chart color="#fcb32c" year={year} />
+
+
+
+## Basic Setup
+
+## Creating the model
+
+## Creating the model
