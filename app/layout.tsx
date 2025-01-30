@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={spaceMono.className}>
-      <body className="h-full bg-zinc-900">
+      <body className="h-full bg-zinc-900 min-w-[400px]">
         {children}
 
         <Analytics />
