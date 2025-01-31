@@ -12,9 +12,10 @@ type Props = {
 };
 
 export default function Terminal({ children, title, href, className }: Props) {
-  const nodeRef = useRef<HTMLDivElement | null>(null);
+  const nodeRef = useRef<HTMLDivElement>(null);
+
   return (
-    <Draggable handle=".handle" nodeRef={nodeRef}>
+    <Draggable handle=".handle" nodeRef={nodeRef as React.RefObject<HTMLElement>}>
       <div ref={nodeRef} className={`h-full text-zinc-200 ${className}`}>
         <div className="border border-zinc-200 max-w-4xl mx-auto">
           <div className="flex items-center justify-between bg-zinc-200 handle cursor-move">
