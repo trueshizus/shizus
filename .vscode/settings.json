@@ -1,5 +1,7 @@
 {
-    "cSpell.enableFiletypes": [
-        "mdx"
-    ]
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    },  
+    "cSpell.enableFiletypes": ["mdx"]
 }

@@ -20,7 +20,7 @@ export default function Terminal({ children, title, href, className }: Props) {
         <div className="border border-zinc-200 max-w-4xl mx-auto">
           <div className="flex items-center justify-between bg-zinc-200 handle cursor-move">
             <p className="text-zinc-900 px-2 font-mono text-sm">{title}</p>
-            <Link href={href} className="text-zinc-900 pr-2 text-sm">
+            <Link href="/menu" className="text-zinc-900 pr-2 text-sm">
               x
             </Link>
           </div>
