@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <main className="h-full grid place-content-center relative">
       <Terminal title="menu" href="/">
-        <form className="flex flex-col p-4 min-w-[300px]" action={handleSubmit}>
+        <form className="flex flex-col p-2 min-w-[300px]" action={handleSubmit}>
           <div className="group has-[:checked]:bg-zinc-200 has-[:checked]:text-zinc-900">
             <label htmlFor="cv" className="block">
               <input
