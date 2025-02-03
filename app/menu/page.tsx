@@ -1,8 +1,10 @@
+"use client";
 import Terminal from "@/components/terminal";
 import { redirect } from "next/navigation";
 
-const handleSubmit = async (formData: FormData) => {
-  "use server";
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
   const menu = formData.get("menu");
   redirect(`/${menu}`);
 };
@@ -11,7 +13,10 @@ export default function Page() {
   return (
     <main className="h-full grid place-content-center relative">
       <Terminal title="menu" href="/">
-        <form className="flex flex-col p-2 min-w-[300px]" action={handleSubmit}>
+        <form
+          className="flex flex-col p-2 min-w-[300px]"
+          onSubmit={handleSubmit}
+        >
           <div className="group has-[:checked]:bg-zinc-200 has-[:checked]:text-zinc-900">
             <label htmlFor="cv" className="block">
               <input
