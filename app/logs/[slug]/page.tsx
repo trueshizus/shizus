@@ -18,7 +18,9 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  const slugs = fs.readdirSync(path.join(process.cwd(), "app/logs/entries"));
+  const slugs = fs
+    .readdirSync(path.join(process.cwd(), "app/logs/entries"))
+    .filter((file) => file.endsWith(".mdx"));
   return slugs.map((slug) => ({ slug: slug.replace(".mdx", "") }));
 }
 
