@@ -1,5 +1,6 @@
 "use client";
 import Terminal from "@/components/terminal";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +29,7 @@ export default function Page() {
                 autoFocus
                 defaultChecked
               />
-              CV
+              <Link href="/">CV</Link>
             </label>
           </div>
           <div className="group has-[:checked]:bg-zinc-200 has-[:checked]:text-zinc-900">
@@ -40,7 +41,7 @@ export default function Page() {
                 value="logs"
                 className="appearance-none"
               />
-              logs
+              <Link href="/logs">logs</Link>
             </label>
           </div>
           <div className="group has-[:checked]:bg-zinc-200 has-[:checked]:text-zinc-900">
@@ -52,7 +53,7 @@ export default function Page() {
                 value="projects"
                 className="appearance-none"
               />
-              projects
+              <Link href="/projects">projects</Link>
             </label>
           </div>
 
