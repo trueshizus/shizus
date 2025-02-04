@@ -1,6 +1,5 @@
 import Terminal from "@/components/terminal";
-import fs from "fs";
-import path from "path";
+import { getSlugs } from "@/utils/getSlugs";
 
 export default async function Page({
   params,
@@ -18,10 +17,7 @@ export default async function Page({
 }
 
 export function generateStaticParams() {
-  const slugs = fs
-    .readdirSync(path.join(process.cwd(), "app/unlisted"))
-    .filter((file) => file.endsWith(".mdx"));
-  return slugs.map((slug) => ({ slug: slug.replace(".mdx", "") }));
+  return getSlugs("app/unlisted");
 }
 
 export const dynamicParams = false;
