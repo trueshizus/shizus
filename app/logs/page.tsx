@@ -1,8 +1,7 @@
-
-import path from "path";
-import fs from "fs";
 import Post from "@/components/post";
 import Terminal from "@/components/terminal";
+import fs from "fs";
+import path from "path";
 
 const directoryPath = path.join("./app/logs/entries");
 
@@ -24,12 +23,11 @@ const getPost = async () => {
   return posts.reverse();
 };
 
-
 export default async function Page() {
   const posts = await getPost();
   return (
     <main className="h-full md:py-12 py-4 px-2">
-      <Terminal title="logs" href="/">
+      <Terminal title="logs">
         {posts.map(({ filename, content }) => (
           <Post key={filename} filename={filename} content={content} />
         ))}

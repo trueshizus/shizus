@@ -10,7 +10,7 @@ export default async function Page({
   const { default: Entry } = await import(`@/app/logs/entries/${slug}.mdx`);
 
   return (
-    <Terminal title={slug} href="/logs">
+    <Terminal title={slug}>
       <Entry />
     </Terminal>
   );

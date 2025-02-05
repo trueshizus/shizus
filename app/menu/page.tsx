@@ -13,7 +13,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 export default function Page() {
   return (
     <main className="h-full grid place-content-center relative">
-      <Terminal title="menu" href="/">
+      <Terminal title="menu">
         <form
           className="flex flex-col p-2 min-w-[300px]"
           onSubmit={handleSubmit}
