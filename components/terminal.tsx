@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRef } from "react";
 import Draggable from "react-draggable";
 
@@ -31,18 +30,7 @@ export default function Terminal({
             <p className="text-zinc-900 px-2 font-mono text-sm flex-grow handle cursor-move">
               {title}
             </p>
-            <div className="flex items-center gap-1">
-              {actions}
-
-              <Link
-                href="/menu"
-                aria-label="Close"
-                title="Close"
-                className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs  hover:bg-zinc-500"
-              >
-                x
-              </Link>
-            </div>
+            <div className="flex items-center gap-1">{actions}</div>
           </div>
           <section className={`${className}`}>{children}</section>
         </div>

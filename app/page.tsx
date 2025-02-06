@@ -1,4 +1,5 @@
 import DownloadAsPdf from "@/components/download-as-pdf";
+import MenuLink from "@/components/menu-link";
 import Terminal from "@/components/terminal";
 import CV from "@/public/cv.mdx";
 
@@ -19,6 +20,7 @@ export default function Home() {
               ⚙
             </button>
             <DownloadAsPdf />
+            <MenuLink />
           </>
         }
       >

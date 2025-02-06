@@ -1,3 +1,4 @@
+import MenuLink from "@/components/menu-link";
 import Post from "@/components/post";
 import Terminal from "@/components/terminal";
 import fs from "fs";
@@ -27,7 +28,7 @@ export default async function Page() {
   const posts = await getPost();
   return (
     <main className="h-full py-4 px-2 grid place-items-center">
-      <Terminal title="logs">
+      <Terminal title="logs" actions={<MenuLink />}>
         {posts.map(({ filename, content }) => (
           <Post key={filename} filename={filename} content={content} />
         ))}
