@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="h-full md:py-12 py-4 px-2">
+    <main className="h-full py-4 px-2 grid place-items-center">
       <Terminal
         title="CV"
         actions={

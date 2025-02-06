@@ -26,7 +26,7 @@ const getPost = async () => {
 export default async function Page() {
   const posts = await getPost();
   return (
-    <main className="h-full md:py-12 py-4 px-2">
+    <main className="h-full py-4 px-2 grid place-items-center">
       <Terminal title="logs">
         {posts.map(({ filename, content }) => (
           <Post key={filename} filename={filename} content={content} />
