@@ -1,3 +1,4 @@
+import DownloadAsPdf from "@/components/download-as-pdf";
 import Terminal from "@/components/terminal";
 import CV from "@/public/cv.mdx";
 
@@ -6,6 +7,7 @@ export default function Home() {
     <main className="h-full py-4 px-2 grid place-items-center">
       <Terminal
         title="CV"
+        className="p-4"
         actions={
           <>
             <button
@@ -16,18 +18,11 @@ export default function Home() {
             >
               ⚙
             </button>
-            <button
-              type="button"
-              aria-label="Download"
-              title="Download"
-              className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs  hover:bg-zinc-500"
-            >
-              ⤓
-            </button>
+            <DownloadAsPdf />
           </>
         }
       >
-        <article className="p-4">
+        <article className="">
           <CV />
         </article>
       </Terminal>

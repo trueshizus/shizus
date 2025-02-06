@@ -25,7 +25,7 @@ export default function Terminal({
       bounds="body"
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
     >
-      <div ref={nodeRef} className={` text-zinc-200 ${className}`}>
+      <div ref={nodeRef} className={` text-zinc-200`}>
         <div className="border border-zinc-200 max-w-4xl">
           <div className="flex items-center justify-between bg-zinc-200 ">
             <p className="text-zinc-900 px-2 font-mono text-sm flex-grow handle cursor-move">
@@ -44,7 +44,7 @@ export default function Terminal({
               </Link>
             </div>
           </div>
-          {children}
+          <section className={`${className}`}>{children}</section>
         </div>
       </div>
     </Draggable>
