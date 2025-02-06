@@ -8,11 +8,11 @@ export default function DownloadAsPdf() {
       const html2pdf = (await import("html2pdf.js")).default;
 
       html2pdf(element, {
-        margin: [0, 0.2, 0.2, 0],
-        filename: "download.pdf",
+        margin: [0, 0, 0, 0],
+        filename: "cv-jesus-herrera.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+        jsPDF: { format: "a4", unit: "mm" },
       });
     }
   };

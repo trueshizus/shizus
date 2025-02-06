@@ -21,7 +21,6 @@ export default function Terminal({
   return (
     <Draggable
       handle=".handle"
-      bounds="body"
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
     >
       <div ref={nodeRef} className={` text-zinc-200`}>
