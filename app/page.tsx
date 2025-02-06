@@ -4,7 +4,7 @@ import CV from "@/public/cv.mdx";
 
 export default function Home() {
   return (
-    <main className="h-full py-4 px-2 grid place-items-center">
+    <main id="portal-root" className="h-full py-4 px-2 grid place-items-center">
       <Terminal
         title="CV"
         actions={
