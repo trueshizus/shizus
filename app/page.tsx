@@ -15,7 +15,7 @@ export default function Home() {
           </>
         }
       >
-        <article className="md:h-[297mm] md:w-[210mm] p-4">
+        <article className="md:h-[297mm] md:w-[210mm] px-6 py-4">
           <CV />
         </article>
       </Terminal>
