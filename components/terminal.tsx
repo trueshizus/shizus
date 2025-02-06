@@ -8,9 +8,15 @@ type Props = {
   children: React.ReactNode;
   title: string;
   className?: string;
+  actions?: React.ReactNode;
 };
 
-export default function Terminal({ children, title, className }: Props) {
+export default function Terminal({
+  children,
+  title,
+  className,
+  actions,
+}: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -22,9 +28,18 @@ export default function Terminal({ children, title, className }: Props) {
         <div className="border border-zinc-200 max-w-4xl mx-auto">
           <div className="flex items-center justify-between bg-zinc-200 handle cursor-move">
             <p className="text-zinc-900 px-2 font-mono text-sm">{title}</p>
-            <Link href="/menu" className="text-zinc-900 pr-2 text-sm">
-              x
-            </Link>
+            <div className="flex items-center gap-1">
+              {actions}
+
+              <Link
+                href="/menu"
+                aria-label="Close"
+                title="Close"
+                className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs  hover:bg-zinc-500"
+              >
+                x
+              </Link>
+            </div>
           </div>
           {children}
         </div>
