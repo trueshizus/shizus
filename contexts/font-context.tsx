@@ -42,7 +42,7 @@ export const fonts = {
   "Indie Flower": indieFlower,
 } as const;
 
-type FontSizes = {
+export type FontSizes = {
   h1: number;
   h2: number;
   h3: number;

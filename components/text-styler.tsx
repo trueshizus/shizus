@@ -1,93 +1,67 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useFont } from "@/contexts/font-context";
+import { FontSizes, useFont } from "@/contexts/font-context";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
+
+type TabConfig = {
+  value: string;
+  icon: React.ComponentType<any>;
+  label: string;
+  max: number;
+  key: keyof FontSizes; // Assuming FontSizes is the type from your context
+};
+
+const tabsConfig: TabConfig[] = [
+  { value: "h1", icon: Heading1, label: "H1", max: 72, key: "h1" },
+  { value: "h2", icon: Heading2, label: "H2", max: 64, key: "h2" },
+  { value: "h3", icon: Heading3, label: "H3", max: 56, key: "h3" },
+  { value: "p", icon: AlignLeft, label: "P", max: 48, key: "p" },
+  { value: "li", icon: List, label: "LI", max: 48, key: "li" },
+];
 
 export default function TextStyler() {
   const { fontSizes, setFontSize } = useFont();
 
-  const handleSliderChange = (
-    value: number[],
-    element: keyof typeof fontSizes
-  ) => {
-    setFontSize(element, value[0]);
+  const handleSliderChange = (value: number[], key: keyof typeof fontSizes) => {
+    setFontSize(key, value[0]);
   };
 
   return (
-    <div className="space-y-6">
-      {/* Text Style Tabs */}
-      <Tabs defaultValue="h1" className="w-full">
+    <div className="space-y-4">
+      <Tabs defaultValue="h1">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="h1" className="flex items-center justify-center">
-            <Heading1 className="w-2 h-2 mr-1" />
-            H1
-          </TabsTrigger>
-          <TabsTrigger value="h2" className="flex items-center justify-center">
-            <Heading2 className="w-2 h-2 mr-1" />
-            H2
-          </TabsTrigger>
-          <TabsTrigger value="h3" className="flex items-center justify-center">
-            <Heading3 className="w-2 h-2 mr-1" />
-            H3
-          </TabsTrigger>
-          <TabsTrigger value="p" className="flex items-center justify-center">
-            <AlignLeft className="w-2 h-2 mr-1" />P
-          </TabsTrigger>
-          <TabsTrigger value="li" className="flex items-center justify-center">
-            <List className="w-2 h-2 mr-1" />
-            LI
-          </TabsTrigger>
+          {tabsConfig.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="flex items-center justify-center"
+            >
+              <tab.icon className="w-4 h-4" />
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="h1" className="mt-4">
-          <p className="text-sm text-zinc-500 my-2">{fontSizes.h1}px</p>
-          <Slider
-            value={[fontSizes.h1]}
-            onValueChange={(value) => handleSliderChange(value, "h1")}
-            max={72}
-            step={1}
-            className="w-full"
-          />
-        </TabsContent>
-        <TabsContent value="h2" className="mt-4">
-          <p className="text-sm text-zinc-500 my-2">{fontSizes.h2}px</p>
-          <Slider
-            value={[fontSizes.h2]}
-            onValueChange={(value) => handleSliderChange(value, "h2")}
-            max={64}
-            step={1}
-            className="w-full"
-          />
-        </TabsContent>
-        <TabsContent value="h3" className="mt-4">
-          <p className="text-sm text-zinc-500 my-2">{fontSizes.h3}px</p>
-          <Slider
-            value={[fontSizes.h3]}
-            onValueChange={(value) => handleSliderChange(value, "h3")}
-            max={56}
-            step={1}
-            className="w-full"
-          />
-        </TabsContent>
-        <TabsContent value="p" className="mt-4">
-          <p className="text-sm text-zinc-500 my-2">{fontSizes.p}px</p>
-          <Slider
-            value={[fontSizes.p]}
-            onValueChange={(value) => handleSliderChange(value, "p")}
-            max={48}
-            step={1}
-            className="w-full"
-          />
-        </TabsContent>
-        <TabsContent value="li" className="mt-4">
-          <p className="text-sm text-zinc-500 my-2">{fontSizes.li}px</p>
-          <Slider
-            value={[fontSizes.li]}
-            onValueChange={(value) => handleSliderChange(value, "li")}
-            max={48}
-            step={1}
-            className="w-full"
-          />
-        </TabsContent>
+
+        <ul className="grid grid-cols-5 p-1">
+          {tabsConfig.map((tab) => (
+            <li key={tab.value} className="flex items-center justify-center">
+              <p className="text-xs text-zinc-500 relative">
+                {fontSizes[tab.key]}px
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        {tabsConfig.map((tab) => (
+          <TabsContent key={tab.value} value={tab.value} className="mt-4">
+            <Slider
+              value={[fontSizes[tab.key]]}
+              onValueChange={(value) => handleSliderChange(value, tab.key)}
+              max={tab.max}
+              step={1}
+              aria-label={`${tab.label} font size slider`}
+            />
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );
