@@ -1,34 +1,48 @@
-import { Zap } from "lucide-react";
+import { CVIntent, useFont } from "@/contexts/font-context";
+import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { Minimize2, Monitor, Sparkles, Zap } from "lucide-react";
 
-import { Minimize2, Sparkles } from "lucide-react";
-import { Button } from "./ui/button";
+const intentConfig = {
+  default: { icon: Monitor, label: "Default" },
+  formal: { icon: Zap, label: "Formal" },
+  short: { icon: Minimize2, label: "Short" },
+  "gen-z": { icon: Sparkles, label: "Gen Z" },
+} as const;
+
+const toggleItemClasses =
+  "rounded-full px-4 py-2 text-sm font-medium transition-all hover:ring-2 hover:ring-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-300 text-white data-[state=on]:bg-white data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm";
 
 export default function SettingsIntent() {
+  const { intent, setIntent } = useFont();
+
   return (
     <div className="flex justify-center mt-6">
-      <div className="inline-flex rounded-full bg-zinc-800 p-1">
-        <Button
-          variant="ghost"
-          className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-200 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
-        >
-          <Zap className="w-2 h-2 mr-2" />
-          Formal
-        </Button>
-        <Button
-          variant="ghost"
-          className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-200 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
-        >
-          <Minimize2 className="w-2 h-2 mr-2" />
-          Short
-        </Button>
-        <Button
-          variant="ghost"
-          className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
-        >
-          <Sparkles className="w-2 h-2 mr-2" />
-          Gen Z
-        </Button>
-      </div>
+      <ToggleGroup.Root
+        className="inline-flex rounded-full bg-zinc-800 p-1 shadow-inner"
+        type="single"
+        value={intent}
+        onValueChange={(value: string | undefined) => {
+          if (value) setIntent(value as CVIntent);
+        }}
+        aria-label="Select CV style"
+      >
+        {(
+          Object.entries(intentConfig) as [
+            CVIntent,
+            (typeof intentConfig)[keyof typeof intentConfig]
+          ][]
+        ).map(([value, { icon: Icon, label }]) => (
+          <ToggleGroup.Item
+            key={value}
+            value={value}
+            className={toggleItemClasses}
+            aria-label={`${label} style`}
+          >
+            <Icon className="w-3 h-3 mr-2 inline" />
+            {label}
+          </ToggleGroup.Item>
+        ))}
+      </ToggleGroup.Root>
     </div>
   );
 }

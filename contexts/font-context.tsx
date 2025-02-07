@@ -50,12 +50,16 @@ export type FontSizes = {
   li: number;
 };
 
+export type CVIntent = "default" | "formal" | "short" | "gen-z";
+
 type FontContextType = {
   selectedFont: keyof typeof fonts;
   setSelectedFont: (font: keyof typeof fonts) => void;
   currentFont: (typeof fonts)[keyof typeof fonts];
   fontSizes: FontSizes;
   setFontSize: (element: keyof FontSizes, size: number) => void;
+  intent: CVIntent;
+  setIntent: (intent: CVIntent) => void;
 };
 
 const defaultFontSizes: FontSizes = {
@@ -72,6 +76,7 @@ export function FontProvider({ children }: { children: ReactNode }) {
   const [selectedFont, setSelectedFont] =
     useState<keyof typeof fonts>("Space Mono");
   const [fontSizes, setFontSizes] = useState<FontSizes>(defaultFontSizes);
+  const [intent, setIntent] = useState<CVIntent>("default");
 
   const setFontSize = (element: keyof FontSizes, size: number) => {
     setFontSizes((prev) => ({
@@ -88,6 +93,8 @@ export function FontProvider({ children }: { children: ReactNode }) {
         currentFont: fonts[selectedFont],
         fontSizes,
         setFontSize,
+        intent,
+        setIntent,
       }}
     >
       {children}
