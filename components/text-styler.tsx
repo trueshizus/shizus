@@ -1,8 +1,18 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useFont } from "@/contexts/font-context";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
 
 export default function TextStyler() {
+  const { fontSizes, setFontSize } = useFont();
+
+  const handleSliderChange = (
+    value: number[],
+    element: keyof typeof fontSizes
+  ) => {
+    setFontSize(element, value[0]);
+  };
+
   return (
     <div className="space-y-6">
       {/* Text Style Tabs */}
@@ -29,19 +39,49 @@ export default function TextStyler() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="h1" className="mt-4">
-          <Slider defaultValue={[32]} max={72} step={1} className="w-full" />
+          <Slider
+            value={[fontSizes.h1]}
+            onValueChange={(value) => handleSliderChange(value, "h1")}
+            max={72}
+            step={1}
+            className="w-full"
+          />
         </TabsContent>
         <TabsContent value="h2" className="mt-4">
-          <Slider defaultValue={[24]} max={64} step={1} className="w-full" />
+          <Slider
+            value={[fontSizes.h2]}
+            onValueChange={(value) => handleSliderChange(value, "h2")}
+            max={64}
+            step={1}
+            className="w-full"
+          />
         </TabsContent>
         <TabsContent value="h3" className="mt-4">
-          <Slider defaultValue={[20]} max={56} step={1} className="w-full" />
+          <Slider
+            value={[fontSizes.h3]}
+            onValueChange={(value) => handleSliderChange(value, "h3")}
+            max={56}
+            step={1}
+            className="w-full"
+          />
         </TabsContent>
         <TabsContent value="p" className="mt-4">
-          <Slider defaultValue={[16]} max={48} step={1} className="w-full" />
+          <Slider
+            value={[fontSizes.p]}
+            onValueChange={(value) => handleSliderChange(value, "p")}
+            max={48}
+            step={1}
+            className="w-full"
+          />
         </TabsContent>
         <TabsContent value="li" className="mt-4">
-          <Slider defaultValue={[16]} max={48} step={1} className="w-full" />
+          <Slider
+            value={[fontSizes.li]}
+            onValueChange={(value) => handleSliderChange(value, "li")}
+            max={48}
+            step={1}
+            className="w-full"
+          />
         </TabsContent>
       </Tabs>
     </div>

@@ -1,4 +1,5 @@
 "use client";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 import {
   IBM_Plex_Serif,
@@ -7,7 +8,6 @@ import {
   Source_Sans_3,
   Space_Mono,
 } from "next/font/google";
-import { createContext, ReactNode, useContext, useState } from "react";
 
 const spaceMono = Space_Mono({
   subsets: ["latin"],
@@ -42,10 +42,28 @@ export const fonts = {
   "Indie Flower": indieFlower,
 } as const;
 
+type FontSizes = {
+  h1: number;
+  h2: number;
+  h3: number;
+  p: number;
+  li: number;
+};
+
 type FontContextType = {
   selectedFont: keyof typeof fonts;
   setSelectedFont: (font: keyof typeof fonts) => void;
   currentFont: (typeof fonts)[keyof typeof fonts];
+  fontSizes: FontSizes;
+  setFontSize: (element: keyof FontSizes, size: number) => void;
+};
+
+const defaultFontSizes: FontSizes = {
+  h1: 32,
+  h2: 24,
+  h3: 20,
+  p: 16,
+  li: 16,
 };
 
 const FontContext = createContext<FontContextType | undefined>(undefined);
@@ -53,6 +71,14 @@ const FontContext = createContext<FontContextType | undefined>(undefined);
 export function FontProvider({ children }: { children: ReactNode }) {
   const [selectedFont, setSelectedFont] =
     useState<keyof typeof fonts>("Space Mono");
+  const [fontSizes, setFontSizes] = useState<FontSizes>(defaultFontSizes);
+
+  const setFontSize = (element: keyof FontSizes, size: number) => {
+    setFontSizes((prev) => ({
+      ...prev,
+      [element]: size,
+    }));
+  };
 
   return (
     <FontContext.Provider
@@ -60,6 +86,8 @@ export function FontProvider({ children }: { children: ReactNode }) {
         selectedFont,
         setSelectedFont,
         currentFont: fonts[selectedFont],
+        fontSizes,
+        setFontSize,
       }}
     >
       {children}
