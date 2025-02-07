@@ -18,18 +18,18 @@ export default function TextStyler() {
       <Tabs defaultValue="h1" className="w-full">
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="h1" className="flex items-center justify-center">
-            <Heading1 className="w-4 h-4 mr-2" />
+            <Heading1 className="w-2 h-2 mr-1" />
             H1
           </TabsTrigger>
           <TabsTrigger value="h2" className="flex items-center justify-center">
-            <Heading2 className="w-4 h-4 mr-2" />
+            <Heading2 className="w-2 h-2 mr-1" />
             H2
           </TabsTrigger>
           <TabsTrigger value="p" className="flex items-center justify-center">
-            <AlignLeft className="w-4 h-4 mr-2" />P
+            <AlignLeft className="w-2 h-2 mr-1" />P
           </TabsTrigger>
           <TabsTrigger value="li" className="flex items-center justify-center">
-            <List className="w-4 h-4 mr-2" />
+            <List className="w-2 h-2 mr-1" />
             LI
           </TabsTrigger>
         </TabsList>
@@ -49,26 +49,26 @@ export default function TextStyler() {
 
       {/* Apple-inspired Intelligence Buttons */}
       <div className="flex justify-center mt-6">
-        <div className="inline-flex rounded-full bg-gray-100 p-1">
+        <div className="inline-flex rounded-full bg-zinc-800 p-1">
           <Button
             variant="ghost"
-            className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+            className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-200 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           >
-            <Zap className="w-4 h-4 mr-2" />
+            <Zap className="w-2 h-2 mr-2" />
             Formal
           </Button>
           <Button
             variant="ghost"
-            className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+            className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-200 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           >
-            <Minimize2 className="w-4 h-4 mr-2" />
+            <Minimize2 className="w-2 h-2 mr-2" />
             Short
           </Button>
           <Button
             variant="ghost"
             className="rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-white hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
           >
-            <Sparkles className="w-4 h-4 mr-2" />
+            <Sparkles className="w-2 h-2 mr-2" />
             Gen Z
           </Button>
         </div>
