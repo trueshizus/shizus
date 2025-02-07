@@ -3,7 +3,7 @@
 import ActionIcon from "@/components/action-icon";
 import InteractiveCV from "@/components/interactive-cv";
 import Terminal from "@/components/terminal";
-import { FontProvider } from "@/contexts/font-context";
+import { FontProvider } from "@/contexts/settings-context";
 export default function Home() {
   return (
     <FontProvider>

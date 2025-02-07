@@ -1,4 +1,4 @@
-import { CVIntent, useFont } from "@/contexts/font-context";
+import { CVIntent, useSettings } from "@/contexts/settings-context";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Minimize2, Monitor, Sparkles, Zap } from "lucide-react";
 
@@ -13,7 +13,7 @@ const toggleItemClasses =
   "rounded-full px-4 py-2 text-sm font-medium transition-all hover:ring-2 hover:ring-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-300 text-white data-[state=on]:bg-white data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm";
 
 export default function SettingsIntent() {
-  const { intent, setIntent } = useFont();
+  const { intent, setIntent } = useSettings();
 
   return (
     <div className="flex justify-center mt-6">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useFont } from "@/contexts/font-context";
+import { useFont } from "@/contexts/settings-context";
 import type { MDXComponents } from "mdx/types";
 import React from "react";
 

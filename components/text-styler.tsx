@@ -1,6 +1,6 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FontSizes, useFont } from "@/contexts/font-context";
+import { FontSizes, useSettings } from "@/contexts/settings-context";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
 
 type TabConfig = {
@@ -8,7 +8,7 @@ type TabConfig = {
   icon: React.ComponentType<any>;
   label: string;
   max: number;
-  key: keyof FontSizes; // Assuming FontSizes is the type from your context
+  key: keyof FontSizes;
 };
 
 const tabsConfig: TabConfig[] = [
@@ -20,7 +20,7 @@ const tabsConfig: TabConfig[] = [
 ];
 
 export default function TextStyler() {
-  const { fontSizes, setFontSize } = useFont();
+  const { fontSizes, setFontSize } = useSettings();
 
   const handleSliderChange = (value: number[], key: keyof typeof fontSizes) => {
     setFontSize(key, value[0]);

@@ -52,7 +52,7 @@ export type FontSizes = {
 
 export type CVIntent = "default" | "formal" | "short" | "gen-z";
 
-type FontContextType = {
+type SettingsContextType = {
   selectedFont: keyof typeof fonts;
   setSelectedFont: (font: keyof typeof fonts) => void;
   currentFont: (typeof fonts)[keyof typeof fonts];
@@ -70,9 +70,11 @@ const defaultFontSizes: FontSizes = {
   li: 14,
 };
 
-const FontContext = createContext<FontContextType | undefined>(undefined);
+const SettingsContext = createContext<SettingsContextType | undefined>(
+  undefined
+);
 
-export function FontProvider({ children }: { children: ReactNode }) {
+export function SettingsProvider({ children }: { children: ReactNode }) {
   const [selectedFont, setSelectedFont] =
     useState<keyof typeof fonts>("Space Mono");
   const [fontSizes, setFontSizes] = useState<FontSizes>(defaultFontSizes);
@@ -86,7 +88,7 @@ export function FontProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <FontContext.Provider
+    <SettingsContext.Provider
       value={{
         selectedFont,
         setSelectedFont,
@@ -98,14 +100,14 @@ export function FontProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </FontContext.Provider>
+    </SettingsContext.Provider>
   );
 }
 
-export function useFont() {
-  const context = useContext(FontContext);
+export function useSettings() {
+  const context = useContext(SettingsContext);
   if (context === undefined) {
-    throw new Error("useFont must be used within a FontProvider");
+    throw new Error("useSettings must be used within a SettingsProvider");
   }
   return context;
 }
