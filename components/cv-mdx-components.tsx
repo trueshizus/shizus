@@ -1,6 +1,6 @@
 "use client";
 
-import { useFont } from "@/contexts/settings-context";
+import { useSettings } from "@/contexts/settings-context";
 import type { MDXComponents } from "mdx/types";
 import React from "react";
 
@@ -10,7 +10,7 @@ type MDXComponentProps = {
 
 // Text components
 const Paragraph = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useFont();
+  const { fontSizes, currentFont } = useSettings();
   return (
     <p
       className={`my-2 leading-normal ${currentFont.className}`}
@@ -25,7 +25,7 @@ const InlineCode = ({ children }: MDXComponentProps) => <b>{children}</b>;
 
 // Heading components
 const H1 = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useFont();
+  const { fontSizes, currentFont } = useSettings();
   return (
     <h1
       className={`font-mono font-bold my-1 ${currentFont.className}`}
@@ -37,7 +37,7 @@ const H1 = ({ children }: MDXComponentProps) => {
 };
 
 const H2 = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useFont();
+  const { fontSizes, currentFont } = useSettings();
   return (
     <h2
       className={`font-mono font-bold my-1 ${currentFont.className}`}
@@ -49,7 +49,7 @@ const H2 = ({ children }: MDXComponentProps) => {
 };
 
 const H3 = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useFont();
+  const { fontSizes, currentFont } = useSettings();
   return (
     <h3
       className={`font-mono font-bold my-1 text-left ${currentFont.className}`}
@@ -70,7 +70,7 @@ const OrderedList = ({ children }: MDXComponentProps) => (
 );
 
 const ListItem = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useFont();
+  const { fontSizes, currentFont } = useSettings();
   return (
     <li
       className={`my-1.5 leading-normal ${currentFont.className}`}

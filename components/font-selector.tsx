@@ -1,7 +1,7 @@
-import { fonts, useFont } from "@/contexts/settings-context";
+import { fonts, useSettings } from "@/contexts/settings-context";
 
 export default function FontSelector() {
-  const { selectedFont, setSelectedFont } = useFont();
+  const { selectedFont, setSelectedFont } = useSettings();
 
   return (
     <select

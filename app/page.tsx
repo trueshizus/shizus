@@ -3,10 +3,10 @@
 import ActionIcon from "@/components/action-icon";
 import InteractiveCV from "@/components/interactive-cv";
 import Terminal from "@/components/terminal";
-import { FontProvider } from "@/contexts/settings-context";
+import { SettingsProvider } from "@/contexts/settings-context";
 export default function Home() {
   return (
-    <FontProvider>
+    <SettingsProvider>
       <main
         id="portal-root"
         className={`h-full py-4 px-2 grid place-items-center `}
@@ -24,6 +24,6 @@ export default function Home() {
           <InteractiveCV />
         </Terminal>
       </main>
-    </FontProvider>
+    </SettingsProvider>
   );
 }
