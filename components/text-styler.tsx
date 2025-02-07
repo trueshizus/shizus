@@ -44,7 +44,7 @@ export default function TextStyler() {
         <ul className="grid grid-cols-5 p-1">
           {tabsConfig.map((tab) => (
             <li key={tab.value} className="flex items-center justify-center">
-              <p className="text-xs text-zinc-500 relative">
+              <p className="text-xs relative text-zinc-500">
                 {fontSizes[tab.key]}px
               </p>
             </li>
