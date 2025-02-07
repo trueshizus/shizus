@@ -4,6 +4,7 @@ import Portal from "@/components/portal";
 import Terminal from "@/components/terminal";
 import { fonts, useFont } from "@/contexts/font-context";
 import { useState } from "react";
+import TextStyler from "./text-styler";
 
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Settings() {
 
     const terminalRect = mainTerminal.getBoundingClientRect();
     const centerX = terminalRect.left - terminalRect.width / 2;
-    const centerY = terminalRect.top - 200;
+    const centerY = terminalRect.top;
 
     return {
       x: centerX,
@@ -55,26 +56,22 @@ export default function Settings() {
                 </button>
               }
             >
-              <div className="p-4 min-w-[300px] space-y-4">
-                <div className="space-y-2 flex gap-4 place-items-baseline">
-                  <label htmlFor="font-select" className="block text-sm">
-                    Font
-                  </label>
-                  <select
-                    id="font-select"
-                    value={selectedFont}
-                    onChange={(e) =>
-                      setSelectedFont(e.target.value as keyof typeof fonts)
-                    }
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-sm"
-                  >
-                    {Object.keys(fonts).map((fontName) => (
-                      <option key={fontName} value={fontName}>
-                        {fontName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="p-4 min-w-[200px] space-y-4">
+                <select
+                  id="font-select"
+                  value={selectedFont}
+                  onChange={(e) =>
+                    setSelectedFont(e.target.value as keyof typeof fonts)
+                  }
+                  className="w-full bg-zinc-800 border border-zinc-700 px-2 py-1 text-sm"
+                >
+                  {Object.keys(fonts).map((fontName) => (
+                    <option key={fontName} value={fontName}>
+                      {fontName}
+                    </option>
+                  ))}
+                </select>
+                <TextStyler />
               </div>
             </Terminal>
           </div>
