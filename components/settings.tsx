@@ -17,8 +17,11 @@ export default function Settings() {
     if (!mainTerminal) return { x: 0, y: 0 };
 
     const terminalRect = mainTerminal.getBoundingClientRect();
-    const centerX = terminalRect.left - terminalRect.width / 2;
-    const centerY = terminalRect.top;
+    const viewportWidth = window.innerWidth;
+
+    // Position relative to viewport center, accounting for terminal width
+    const centerX = viewportWidth / 2 - terminalRect.width / 2;
+    const centerY = terminalRect.top + window.scrollY; // Add scroll offset for consistency
 
     return {
       x: centerX,
