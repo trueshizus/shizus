@@ -1,14 +1,9 @@
+import { FontProvider } from "@/contexts/font-context";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "katex/dist/katex.min.css";
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
 import "./globals.css";
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export const metadata: Metadata = {
   title: "shizus.dev",
@@ -21,13 +16,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceMono.className}>
-      <body className="h-screen bg-zinc-900 min-w-[400px] w-full">
-        {children}
+    <html lang="en">
+      <FontProvider>
+        <body className="h-screen bg-zinc-900 min-w-[400px] w-full">
+          {children}
 
-        <Analytics />
-        <SpeedInsights />
-      </body>
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </FontProvider>
     </html>
   );
 }

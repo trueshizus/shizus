@@ -2,10 +2,12 @@
 
 import Portal from "@/components/portal";
 import Terminal from "@/components/terminal";
+import { fonts, useFont } from "@/contexts/font-context";
 import { useState } from "react";
 
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
+  const { selectedFont, setSelectedFont } = useFont();
 
   const calculateInitialPosition = () => {
     if (typeof window === "undefined") return { x: 0, y: 0 };
@@ -46,14 +48,34 @@ export default function Settings() {
                 <button
                   aria-label="Close"
                   title="Close"
-                  className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs  hover:bg-zinc-500"
+                  className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs hover:bg-zinc-500"
                   onClick={() => setIsOpen(false)}
                 >
                   x
                 </button>
               }
             >
-              <div className="p-4 w-[300px]">settings</div>
+              <div className="p-4 min-w-[300px] space-y-4">
+                <div className="space-y-2 flex gap-4 place-items-baseline">
+                  <label htmlFor="font-select" className="block text-sm">
+                    Font
+                  </label>
+                  <select
+                    id="font-select"
+                    value={selectedFont}
+                    onChange={(e) =>
+                      setSelectedFont(e.target.value as keyof typeof fonts)
+                    }
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-sm"
+                  >
+                    {Object.keys(fonts).map((fontName) => (
+                      <option key={fontName} value={fontName}>
+                        {fontName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </Terminal>
           </div>
         </Portal>

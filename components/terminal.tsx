@@ -1,5 +1,6 @@
 "use client";
 
+import { useFont } from "@/contexts/font-context";
 import { useRef } from "react";
 import Draggable from "react-draggable";
 
@@ -21,6 +22,7 @@ export default function Terminal({
   handleClass = "handle",
 }: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
+  const { currentFont } = useFont();
 
   return (
     <Draggable
@@ -28,7 +30,10 @@ export default function Terminal({
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
       defaultPosition={defaultPosition}
     >
-      <div ref={nodeRef} className={`text-zinc-200 bg-zinc-900`}>
+      <div
+        ref={nodeRef}
+        className={`text-zinc-200 bg-zinc-900 ${currentFont.className}`}
+      >
         <div className="border border-zinc-200 max-w-4xl">
           <div className="flex items-center justify-between bg-zinc-200">
             <p
