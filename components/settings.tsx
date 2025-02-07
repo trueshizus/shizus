@@ -7,6 +7,22 @@ import { useState } from "react";
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const calculateInitialPosition = () => {
+    if (typeof window === "undefined") return { x: 0, y: 0 };
+
+    const mainTerminal = document.querySelector("#portal-root article");
+    if (!mainTerminal) return { x: 0, y: 0 };
+
+    const terminalRect = mainTerminal.getBoundingClientRect();
+    const centerX = terminalRect.left - terminalRect.width / 2;
+    const centerY = terminalRect.top - 200;
+
+    return {
+      x: centerX,
+      y: centerY,
+    };
+  };
+
   return (
     <>
       <button
@@ -24,18 +40,20 @@ export default function Settings() {
           <div className="absolute z-50">
             <Terminal
               title="Settings"
-              defaultPosition={{ x: 800, y: 50 }}
+              defaultPosition={calculateInitialPosition()}
               handleClass="settings-handle"
-            >
-              <div className="p-4 w-[300px]">
-                settings
+              actions={
                 <button
+                  aria-label="Close"
+                  title="Close"
+                  className="flex items-center justify-center w-4 h-4 text-zinc-900 text-xs  hover:bg-zinc-500"
                   onClick={() => setIsOpen(false)}
-                  className="mt-4 px-4 py-2 bg-zinc-200 rounded hover:bg-zinc-300 text-zinc-900"
                 >
-                  Close
+                  x
                 </button>
-              </div>
+              }
+            >
+              <div className="p-4 w-[300px]">settings</div>
             </Terminal>
           </div>
         </Portal>

@@ -28,7 +28,7 @@ export default function Terminal({
       nodeRef={nodeRef as React.RefObject<HTMLElement>}
       defaultPosition={defaultPosition}
     >
-      <div ref={nodeRef} className={`text-zinc-200`}>
+      <div ref={nodeRef} className={`text-zinc-200 bg-zinc-900`}>
         <div className="border border-zinc-200 max-w-4xl">
           <div className="flex items-center justify-between bg-zinc-200">
             <p
