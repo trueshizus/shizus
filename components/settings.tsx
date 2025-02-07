@@ -1,14 +1,14 @@
 "use client";
 
+import FontSelector from "@/components/font-selector";
 import Portal from "@/components/portal";
+import SettingsIntent from "@/components/settings-intent";
 import Terminal from "@/components/terminal";
-import { fonts, useFont } from "@/contexts/font-context";
+import TextStyler from "@/components/text-styler";
 import { useState } from "react";
-import TextStyler from "./text-styler";
 
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedFont, setSelectedFont } = useFont();
 
   const calculateInitialPosition = () => {
     if (typeof window === "undefined") return { x: 0, y: 0 };
@@ -57,21 +57,9 @@ export default function Settings() {
               }
             >
               <div className="p-4 min-w-[200px] space-y-4">
-                <select
-                  id="font-select"
-                  value={selectedFont}
-                  onChange={(e) =>
-                    setSelectedFont(e.target.value as keyof typeof fonts)
-                  }
-                  className="w-full bg-zinc-800 border border-zinc-700 px-2 py-1 text-sm"
-                >
-                  {Object.keys(fonts).map((fontName) => (
-                    <option key={fontName} value={fontName}>
-                      {fontName}
-                    </option>
-                  ))}
-                </select>
+                <FontSelector />
                 <TextStyler />
+                <SettingsIntent />
               </div>
             </Terminal>
           </div>
