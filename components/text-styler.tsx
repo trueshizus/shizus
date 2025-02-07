@@ -39,6 +39,7 @@ export default function TextStyler() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="h1" className="mt-4">
+          <p className="text-sm text-zinc-500 my-2">{fontSizes.h1}px</p>
           <Slider
             value={[fontSizes.h1]}
             onValueChange={(value) => handleSliderChange(value, "h1")}
@@ -48,6 +49,7 @@ export default function TextStyler() {
           />
         </TabsContent>
         <TabsContent value="h2" className="mt-4">
+          <p className="text-sm text-zinc-500 my-2">{fontSizes.h2}px</p>
           <Slider
             value={[fontSizes.h2]}
             onValueChange={(value) => handleSliderChange(value, "h2")}
@@ -57,6 +59,7 @@ export default function TextStyler() {
           />
         </TabsContent>
         <TabsContent value="h3" className="mt-4">
+          <p className="text-sm text-zinc-500 my-2">{fontSizes.h3}px</p>
           <Slider
             value={[fontSizes.h3]}
             onValueChange={(value) => handleSliderChange(value, "h3")}
@@ -66,6 +69,7 @@ export default function TextStyler() {
           />
         </TabsContent>
         <TabsContent value="p" className="mt-4">
+          <p className="text-sm text-zinc-500 my-2">{fontSizes.p}px</p>
           <Slider
             value={[fontSizes.p]}
             onValueChange={(value) => handleSliderChange(value, "p")}
@@ -75,6 +79,7 @@ export default function TextStyler() {
           />
         </TabsContent>
         <TabsContent value="li" className="mt-4">
+          <p className="text-sm text-zinc-500 my-2">{fontSizes.li}px</p>
           <Slider
             value={[fontSizes.li]}
             onValueChange={(value) => handleSliderChange(value, "li")}

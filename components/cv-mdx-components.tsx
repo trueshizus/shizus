@@ -31,7 +31,6 @@ const H1 = ({ children }: MDXComponentProps) => {
       className={`font-mono font-bold my-1 ${currentFont.className}`}
       style={{ fontSize: `${fontSizes.h1}px` }}
     >
-      <span className="text-zinc-200">Testing</span>
       {children}
     </h1>
   );

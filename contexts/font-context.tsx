@@ -59,11 +59,11 @@ type FontContextType = {
 };
 
 const defaultFontSizes: FontSizes = {
-  h1: 32,
-  h2: 24,
-  h3: 20,
-  p: 16,
-  li: 16,
+  h1: 20,
+  h2: 18,
+  h3: 16,
+  p: 14,
+  li: 14,
 };
 
 const FontContext = createContext<FontContextType | undefined>(undefined);
