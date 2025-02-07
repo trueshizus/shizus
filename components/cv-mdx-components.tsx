@@ -8,7 +8,6 @@ type MDXComponentProps = {
   children: React.ReactNode;
 };
 
-// Text components
 const Paragraph = ({ children }: MDXComponentProps) => {
   const { fontSizes, currentFont } = useSettings();
   return (
@@ -60,7 +59,6 @@ const H3 = ({ children }: MDXComponentProps) => {
   );
 };
 
-// List components
 const UnorderedList = ({ children }: MDXComponentProps) => (
   <ul className="list-disc ml-4">{children}</ul>
 );
