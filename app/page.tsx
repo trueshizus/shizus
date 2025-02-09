@@ -1,28 +1,18 @@
-"use client";
-
-import ActionIcon from "@/components/action-icon";
-import InteractiveCV from "@/components/interactive-cv";
-import Terminal from "@/components/terminal";
+import CVDynamic from "@/components/cv-dynamic";
 import { SettingsProvider } from "@/contexts/settings-context";
-export default function Home() {
+import { promises as fs } from "fs";
+import path from "path";
+
+export default async function Home() {
+  const filePath = path.join(process.cwd(), "/public/cv.md");
+  const content = await fs.readFile(filePath, "utf8");
   return (
-    <SettingsProvider>
+    <SettingsProvider defaultContent={content}>
       <main
         id="portal-root"
-        className={`h-full py-4 px-2 grid place-items-center `}
+        className={`h-full py-4 px-2 grid place-items-center`}
       >
-        <Terminal
-          title="CV"
-          actions={
-            <>
-              <ActionIcon icon="settings" />
-              <ActionIcon icon="download" />
-              <ActionIcon icon="close" />
-            </>
-          }
-        >
-          <InteractiveCV />
-        </Terminal>
+        <CVDynamic />
       </main>
     </SettingsProvider>
   );

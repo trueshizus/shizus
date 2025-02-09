@@ -9,7 +9,7 @@ import {
   Space_Mono,
 } from "next/font/google";
 
-import { generate } from "@/app/actions";
+import { generate } from "@/actions/generate-cv";
 import { readStreamableValue } from "ai/rsc";
 
 const spaceMono = Space_Mono({

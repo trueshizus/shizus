@@ -4,11 +4,6 @@ import { CVIntent } from "@/contexts/settings-context";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { createStreamableValue } from "ai/rsc";
-import { redirect } from "next/navigation";
-
-export async function navigate(data: FormData) {
-  redirect(`/${data.get("menu")}`);
-}
 
 const styles = {
   formal: "formal and professional",
