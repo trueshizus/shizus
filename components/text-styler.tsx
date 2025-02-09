@@ -20,7 +20,7 @@ const tabsConfig: TabConfig[] = [
 ];
 
 export default function TextStyler() {
-  const { fontSizes, setFontSize } = useSettings();
+  const { fontSizes, setFontSize, isGenerating } = useSettings();
 
   const handleSliderChange = (value: number[], key: keyof typeof fontSizes) => {
     setFontSize(key, value[0]);
@@ -59,6 +59,7 @@ export default function TextStyler() {
               max={tab.max}
               step={1}
               aria-label={`${tab.label} font size slider`}
+              disabled={isGenerating}
             />
           </TabsContent>
         ))}

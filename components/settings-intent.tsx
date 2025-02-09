@@ -15,7 +15,7 @@ const toggleItemClasses =
   "rounded-full px-4 py-2 text-sm font-medium transition-all hover:ring-2 hover:ring-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-300 text-white data-[state=on]:bg-white data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm";
 
 export default function SettingsIntent() {
-  const { intent, setIntent } = useSettings();
+  const { intent, setIntent, isGenerating } = useSettings();
 
   return (
     <div className="flex justify-center mt-6">
@@ -27,6 +27,7 @@ export default function SettingsIntent() {
           if (value) setIntent(value as CVIntent);
         }}
         aria-label="Select CV style"
+        disabled={isGenerating}
       >
         {(
           Object.entries(intentConfig) as [
