@@ -1,7 +1,29 @@
-'use server'
- 
-import { redirect } from 'next/navigation';
- 
+"use server";
+
+import { openai } from "@ai-sdk/openai";
+import { streamText } from "ai";
+import { createStreamableValue } from "ai/rsc";
+import { redirect } from "next/navigation";
+
 export async function navigate(data: FormData) {
   redirect(`/${data.get("menu")}`);
+}
+
+export async function generate(input: string) {
+  const stream = createStreamableValue("");
+
+  (async () => {
+    const { textStream } = streamText({
+      model: openai("gpt-3.5-turbo"),
+      prompt: input,
+    });
+
+    for await (const delta of textStream) {
+      stream.update(delta);
+    }
+
+    stream.done();
+  })();
+
+  return { output: stream.value };
 }

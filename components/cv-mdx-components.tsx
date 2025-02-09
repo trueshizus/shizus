@@ -9,31 +9,15 @@ type MDXComponentProps = {
 };
 
 const Paragraph = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useSettings();
-  return (
-    <p
-      className={`my-2 leading-normal ${currentFont.className}`}
-      style={{ fontSize: `${fontSizes.p}px` }}
-    >
-      {children}
-    </p>
-  );
+  return <p className={`my-2 leading-normal `}>{children}</p>;
 };
 
 const InlineCode = ({ children }: MDXComponentProps) => <b>{children}</b>;
 
 // Heading components
-const H1 = ({ children }: MDXComponentProps) => {
-  const { fontSizes, currentFont } = useSettings();
-  return (
-    <h1
-      className={` font-bold my-1 ${currentFont.className}`}
-      style={{ fontSize: `${fontSizes.h1}px` }}
-    >
-      {children}
-    </h1>
-  );
-};
+const H1 = ({ children }: { children: React.ReactNode }) => (
+  <h1 className="text-2xl font-bold my-1">{children}</h1>
+);
 
 const H2 = ({ children }: MDXComponentProps) => {
   const { fontSizes, currentFont } = useSettings();
@@ -77,9 +61,8 @@ const ListItem = ({ children }: MDXComponentProps) => {
 
 export const cvMdxComponents: MDXComponents = {
   h1: H1,
-  h2: H2,
-  h3: H3,
-  p: Paragraph,
-  li: ListItem,
-  layout: ({ children }: MDXComponentProps) => <article>{children}</article>,
+  // h2: H2,
+  // h3: H3,
+  // p: Paragraph,
+  // li: ListItem,
 };
