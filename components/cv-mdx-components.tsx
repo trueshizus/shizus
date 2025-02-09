@@ -27,7 +27,7 @@ const H1 = ({ children }: MDXComponentProps) => {
   const { fontSizes, currentFont } = useSettings();
   return (
     <h1
-      className={`font-mono font-bold my-1 ${currentFont.className}`}
+      className={` font-bold my-1 ${currentFont.className}`}
       style={{ fontSize: `${fontSizes.h1}px` }}
     >
       {children}
@@ -39,7 +39,7 @@ const H2 = ({ children }: MDXComponentProps) => {
   const { fontSizes, currentFont } = useSettings();
   return (
     <h2
-      className={`font-mono font-bold my-1 ${currentFont.className}`}
+      className={` font-bold my-1 ${currentFont.className}`}
       style={{ fontSize: `${fontSizes.h2}px` }}
     >
       {children}
@@ -51,7 +51,7 @@ const H3 = ({ children }: MDXComponentProps) => {
   const { fontSizes, currentFont } = useSettings();
   return (
     <h3
-      className={`font-mono font-bold my-1 text-left ${currentFont.className}`}
+      className={`font-bold my-1 tracking-tight  ${currentFont.className}`}
       style={{ fontSize: `${fontSizes.h3}px` }}
     >
       {children}
@@ -61,10 +61,6 @@ const H3 = ({ children }: MDXComponentProps) => {
 
 const UnorderedList = ({ children }: MDXComponentProps) => (
   <ul className="list-disc ml-4">{children}</ul>
-);
-
-const OrderedList = ({ children }: MDXComponentProps) => (
-  <ol className="list-decimal ml-2">{children}</ol>
 );
 
 const ListItem = ({ children }: MDXComponentProps) => {
@@ -84,7 +80,6 @@ export const cvMdxComponents: MDXComponents = {
   h2: H2,
   h3: H3,
   p: Paragraph,
-  ol: OrderedList,
   li: ListItem,
   layout: ({ children }: MDXComponentProps) => <article>{children}</article>,
 };
