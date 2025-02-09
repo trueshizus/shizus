@@ -1,5 +1,6 @@
 "use client";
 import { useSettings } from "@/contexts/settings-context";
+import { Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import ActionIcon from "./action-icon";
 import { cvComponents } from "./cv-md-components";
@@ -20,6 +21,7 @@ export default function CVDynamic() {
     <>
       <Terminal
         title="CV"
+        loading={isGenerating}
         actions={
           <>
             <ActionIcon icon="settings" />
@@ -28,9 +30,12 @@ export default function CVDynamic() {
           </>
         }
       >
-        {isGenerating && (
+        {true && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div className="text-white">Generating...</div>
+            <div className="text-white flex items-center gap-2">
+              <span>Generating</span>
+              <Bot className="w-4 h-4 animate-bounce" />
+            </div>
           </div>
         )}
         <article

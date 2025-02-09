@@ -10,6 +10,7 @@ type Props = {
   actions?: React.ReactNode;
   defaultPosition?: { x: number; y: number };
   handleClass?: string;
+  loading?: boolean;
 };
 
 export default function Terminal({
@@ -19,6 +20,7 @@ export default function Terminal({
   actions,
   defaultPosition,
   handleClass = "handle",
+  loading = false,
 }: Props) {
   const nodeRef = useRef<HTMLDivElement>(null);
 
