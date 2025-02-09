@@ -62,7 +62,7 @@ type SettingsContextType = {
   fontSizes: FontSizes;
   setFontSize: (element: keyof FontSizes, size: number) => void;
   intent: CVIntent;
-  setIntent: (intent: CVIntent, originalContent: string) => Promise<void>;
+  setIntent: (intent: CVIntent) => Promise<void>;
   generatedContent: string;
   isGenerating: boolean;
   defaultContent: string;

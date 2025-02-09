@@ -14,7 +14,7 @@ const intentConfig = {
 const toggleItemClasses =
   "rounded-full px-4 py-2 text-sm font-medium transition-all hover:ring-2 hover:ring-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-300 text-white data-[state=on]:bg-white data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm";
 
-export default function SettingsIntent({ content }: { content: string }) {
+export default function SettingsIntent() {
   const { intent, setIntent } = useSettings();
 
   return (
@@ -24,7 +24,7 @@ export default function SettingsIntent({ content }: { content: string }) {
         type="single"
         value={intent}
         onValueChange={(value: string | undefined) => {
-          if (value) setIntent(value as CVIntent, content);
+          if (value) setIntent(value as CVIntent);
         }}
         aria-label="Select CV style"
       >
