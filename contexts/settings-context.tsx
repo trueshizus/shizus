@@ -9,6 +9,9 @@ import {
   Space_Mono,
 } from "next/font/google";
 
+import { generate } from "@/app/actions";
+import { readStreamableValue } from "ai/rsc";
+
 const spaceMono = Space_Mono({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -59,7 +62,10 @@ type SettingsContextType = {
   fontSizes: FontSizes;
   setFontSize: (element: keyof FontSizes, size: number) => void;
   intent: CVIntent;
-  setIntent: (intent: CVIntent) => void;
+  setIntent: (intent: CVIntent, originalContent: string) => Promise<void>;
+  generatedContent: string;
+  isGenerating: boolean;
+  defaultContent: string;
 };
 
 const defaultFontSizes: FontSizes = {
@@ -74,17 +80,53 @@ const SettingsContext = createContext<SettingsContextType | undefined>(
   undefined
 );
 
-export function SettingsProvider({ children }: { children: ReactNode }) {
+export function SettingsProvider({
+  children,
+  defaultContent,
+}: {
+  children: ReactNode;
+  defaultContent: string;
+}) {
   const [selectedFont, setSelectedFont] =
     useState<keyof typeof fonts>("Space Mono");
   const [fontSizes, setFontSizes] = useState<FontSizes>(defaultFontSizes);
-  const [intent, setIntent] = useState<CVIntent>("default");
+  const [intent, setIntentState] = useState<CVIntent>("default");
+  const [generatedContent, setGeneratedContent] = useState<string>("");
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const setFontSize = (element: keyof FontSizes, size: number) => {
     setFontSizes((prev) => ({
       ...prev,
       [element]: size,
     }));
+  };
+
+  const setIntent = async (newIntent: CVIntent) => {
+    setIntentState(newIntent);
+
+    if (newIntent === "default") {
+      setGeneratedContent(defaultContent);
+      return;
+    }
+
+    try {
+      setIsGenerating(true);
+      const { output } = await generate(defaultContent, newIntent);
+
+      setGeneratedContent("");
+      if (typeof output === "string") {
+        setGeneratedContent(output);
+      } else {
+        for await (const delta of readStreamableValue(output)) {
+          setGeneratedContent((prev) => `${prev}${delta}`);
+        }
+      }
+    } catch (error) {
+      console.error("Generation failed:", error);
+      setGeneratedContent(defaultContent);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -97,6 +139,9 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
         setFontSize,
         intent,
         setIntent,
+        generatedContent,
+        isGenerating,
+        defaultContent,
       }}
     >
       {children}

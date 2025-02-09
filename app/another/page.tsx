@@ -7,12 +7,12 @@ export default async function Home() {
   const filePath = path.join(process.cwd(), "/public/cv.md");
   const content = await fs.readFile(filePath, "utf8");
   return (
-    <SettingsProvider>
+    <SettingsProvider defaultContent={content}>
       <main
         id="portal-root"
-        className={`h-full py-4 px-2 grid place-items-center `}
+        className={`h-full py-4 px-2 grid place-items-center`}
       >
-        <CVDynamic initialContent={content} />
+        <CVDynamic />
       </main>
     </SettingsProvider>
   );

@@ -1,3 +1,5 @@
+"use client";
+
 import { CVIntent, useSettings } from "@/contexts/settings-context";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Minimize2, Monitor, Sparkles, Zap } from "lucide-react";
@@ -12,7 +14,7 @@ const intentConfig = {
 const toggleItemClasses =
   "rounded-full px-4 py-2 text-sm font-medium transition-all hover:ring-2 hover:ring-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-300 text-white data-[state=on]:bg-white data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm";
 
-export default function SettingsIntent() {
+export default function SettingsIntent({ content }: { content: string }) {
   const { intent, setIntent } = useSettings();
 
   return (
@@ -22,7 +24,7 @@ export default function SettingsIntent() {
         type="single"
         value={intent}
         onValueChange={(value: string | undefined) => {
-          if (value) setIntent(value as CVIntent);
+          if (value) setIntent(value as CVIntent, content);
         }}
         aria-label="Select CV style"
       >

@@ -1,5 +1,6 @@
 "use server";
 
+import { CVIntent } from "@/contexts/settings-context";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { createStreamableValue } from "ai/rsc";
@@ -9,13 +10,40 @@ export async function navigate(data: FormData) {
   redirect(`/${data.get("menu")}`);
 }
 
-export async function generate(input: string) {
+const styles = {
+  formal: "formal and professional",
+  short: "short and concise",
+  "gen-z": "modern and appealing to Gen Z employers",
+};
+
+type StyleOptions = keyof typeof styles;
+
+const cvPrompt = (
+  style: StyleOptions,
+  markdownCV: string
+) => `You are an expert resume writer. Rewrite the following CV in markdown format to be ${styles[style]}.
+*   Keep all '#' and '##' headings exactly as they are in the original CV.
+*   You may freely modify '###' headings and list elements to better fit the ${style} style while preserving the information in the original CV.
+*   Output only the rewritten markdown CV. The cv must be below 10000 characters
+Here is the original CV:
+<MarkdownCV>
+${markdownCV}
+</MarkdownCV>
+`;
+
+export async function generate(markdownCV: string, intent: CVIntent) {
+  if (intent === "default") return { output: markdownCV };
+
   const stream = createStreamableValue("");
+
+  const prompt = cvPrompt(intent, markdownCV);
+
+  console.log(prompt);
 
   (async () => {
     const { textStream } = streamText({
       model: openai("gpt-3.5-turbo"),
-      prompt: input,
+      prompt,
     });
 
     for await (const delta of textStream) {
