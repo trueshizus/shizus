@@ -1,13 +1,14 @@
 "use client";
 
+import FontSelector from "@/components/font-selector";
 import Portal from "@/components/portal";
+import SettingsIntent from "@/components/settings-intent";
 import Terminal from "@/components/terminal";
-import { fonts, useFont } from "@/contexts/font-context";
+import TextStyler from "@/components/text-styler";
 import { useState } from "react";
 
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
-  const { selectedFont, setSelectedFont } = useFont();
 
   const calculateInitialPosition = () => {
     if (typeof window === "undefined") return { x: 0, y: 0 };
@@ -16,8 +17,11 @@ export default function Settings() {
     if (!mainTerminal) return { x: 0, y: 0 };
 
     const terminalRect = mainTerminal.getBoundingClientRect();
-    const centerX = terminalRect.left - terminalRect.width / 2;
-    const centerY = terminalRect.top - 200;
+    const viewportWidth = window.innerWidth;
+
+    // Position relative to viewport center, accounting for terminal width
+    const centerX = viewportWidth / 2 - terminalRect.width / 2;
+    const centerY = terminalRect.top + window.scrollY; // Add scroll offset for consistency
 
     return {
       x: centerX,
@@ -55,26 +59,10 @@ export default function Settings() {
                 </button>
               }
             >
-              <div className="p-4 min-w-[300px] space-y-4">
-                <div className="space-y-2 flex gap-4 place-items-baseline">
-                  <label htmlFor="font-select" className="block text-sm">
-                    Font
-                  </label>
-                  <select
-                    id="font-select"
-                    value={selectedFont}
-                    onChange={(e) =>
-                      setSelectedFont(e.target.value as keyof typeof fonts)
-                    }
-                    className="w-full bg-zinc-800 border border-zinc-700 rounded px-2 py-1 text-sm"
-                  >
-                    {Object.keys(fonts).map((fontName) => (
-                      <option key={fontName} value={fontName}>
-                        {fontName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="p-4 min-w-[200px] space-y-4">
+                <FontSelector />
+                <TextStyler />
+                <SettingsIntent />
               </div>
             </Terminal>
           </div>

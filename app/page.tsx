@@ -1,24 +1,19 @@
-import ActionIcon from "@/components/action-icon";
-import Terminal from "@/components/terminal";
-import CV from "@/public/cv.mdx";
+import DynamicMarkdown from "@/components/dynamic-markdown";
+import { SettingsProvider } from "@/contexts/settings-context";
+import { promises as fs } from "fs";
+import path from "path";
 
-export default function Home() {
+export default async function Home() {
+  const filePath = path.join(process.cwd(), "/public/cv.md");
+  const content = await fs.readFile(filePath, "utf8");
   return (
-    <main id="portal-root" className="h-full py-4 px-2 grid place-items-center">
-      <Terminal
-        title="CV"
-        actions={
-          <>
-            <ActionIcon icon="settings" />
-            <ActionIcon icon="download" />
-            <ActionIcon icon="close" />
-          </>
-        }
+    <SettingsProvider defaultContent={content}>
+      <main
+        id="portal-root"
+        className={`md:py-12 py-4 grid place-items-center`}
       >
-        <article className="md:h-[297mm] md:w-[210mm] px-6 py-4">
-          <CV />
-        </article>
-      </Terminal>
-    </main>
+        <DynamicMarkdown />
+      </main>
+    </SettingsProvider>
   );
 }
