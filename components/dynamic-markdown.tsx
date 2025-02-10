@@ -32,7 +32,7 @@ export default function DynamicMarkdown() {
       >
         {isGenerating && <Loading />}
         <article
-          className={`md:min-h-[297mm] md:min-w-[210mm] px-6 py-4 hyphens-auto ${currentFont.className}`}
+          className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${currentFont.className}`}
         >
           <ReactMarkdown components={dynamicComponents}>
             {generatedContent || defaultContent}
@@ -45,7 +45,7 @@ export default function DynamicMarkdown() {
 
 function Loading() {
   return (
-    <div className="absolute inset-0 bg-zinc-900/80 flex items-center justify-center ">
+    <div className="absolute md:min-h-[297mm] md:min-w-[210mm]  inset-0 bg-zinc-900/80 flex items-center justify-center ">
       <div className="text-white flex items-center gap-2">
         <span>Generating</span>
         <div className="grid [grid-template-areas:'stack'] animate-bounce">

@@ -5,34 +5,46 @@ import type { Components } from "react-markdown";
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {}
 interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
+interface UnorderedListProps extends React.HTMLAttributes<HTMLUListElement> {}
 
-const Heading = (
-  Tag: "h1" | "h2" | "h3",
-  baseClass: string
-): FC<HeadingProps> =>
-  memo(({ children, ...props }) => (
-    <Tag className={`${baseClass} font-bold my-1 `} {...props}>
-      {children}
-    </Tag>
-  ));
+const H1: FC<HeadingProps> = memo(({ children, ...props }) => (
+  <h1 className="font-bold " {...props}>
+    {children}
+  </h1>
+));
 
-const H1 = Heading("h1", "text-3xl md-h1");
-const H2 = Heading("h2", "text-2xl md-h2 border-b border-zinc-200");
-const H3 = Heading("h3", "text-xl md-h3");
+const H2: FC<HeadingProps> = memo(({ children, ...props }) => (
+  <h2 className="font-bold  border-b-2 border-zinc-400 my-2" {...props}>
+    {children}
+  </h2>
+));
+
+const H3: FC<HeadingProps> = memo(({ children, ...props }) => (
+  <h3 className="font-bold mt-3" {...props}>
+    {children}
+  </h3>
+));
 
 const P: FC<ParagraphProps> = memo(({ children, ...props }) => (
-  <p className={`my-2 leading-normal md-p `} {...props}>
+  <p className="my-1" {...props}>
     {children}
   </p>
 ));
 
 const Li: FC<ListItemProps> = memo(({ children, ...props }) => (
-  <li
-    className={`my-1.5 leading-normal md-li list-disc list-inside `}
-    {...props}
-  >
+  <li className="my-1" {...props}>
     {children}
   </li>
+));
+
+const Ul: FC<UnorderedListProps> = memo(({ children, ...props }) => (
+  <ul className="list-disc list-inside leading-relaxed mb-2" {...props}>
+    {children}
+  </ul>
+));
+
+const Em: FC<ListItemProps> = memo(({ children, ...props }) => (
+  <small {...props}>{children}</small>
 ));
 
 export const cvComponents = (fontSizes: FontSizes): Components => ({
@@ -51,4 +63,8 @@ export const cvComponents = (fontSizes: FontSizes): Components => ({
   li: (props) => (
     <Li {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
   ),
+  em: (props) => (
+    <Em {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
+  ),
+  ul: (props) => <Ul {...props} />,
 });
