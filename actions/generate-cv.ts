@@ -1,6 +1,7 @@
 "use server";
 
 import { CVIntent } from "@/contexts/settings-context";
+import { deepseek } from "@ai-sdk/deepseek";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
@@ -31,6 +32,12 @@ ${markdownCV}
 </MarkdownCV>
 `;
 
+const modelConfig = {
+  openai: openai("gpt-4o-mini"),
+  google: google("gemini-2.0-flash-lite-preview-02-05"),
+  deepseek: deepseek("deepseek-chat"),
+} as const;
+
 export async function generate(
   markdownCV: string,
   intent: CVIntent,
@@ -38,10 +45,7 @@ export async function generate(
 ) {
   if (intent === "default") return { output: markdownCV };
 
-  const model =
-    provider === "openai"
-      ? openai("gpt-4o-mini")
-      : google("gemini-2.0-flash-lite-preview-02-05");
+  const model = modelConfig[provider];
 
   const stream = createStreamableValue("");
 

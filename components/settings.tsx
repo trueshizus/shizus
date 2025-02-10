@@ -61,7 +61,7 @@ export default function Settings() {
                 </button>
               }
             >
-              <div className="p-4 min-w-[200px] space-y-2">
+              <div className="p-2 min-w-[200px] space-y-2">
                 <FontSelector />
                 <TextStyler />
                 <ModelSelector />

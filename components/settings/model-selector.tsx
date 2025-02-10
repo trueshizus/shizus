@@ -2,11 +2,12 @@
 
 import { AIProvider, useSettings } from "@/contexts/settings-context";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import { Bot, Sparkles } from "lucide-react";
+import { Bot, Globe, Sparkles } from "lucide-react";
 
 const modelConfig = {
   openai: { icon: Sparkles, label: "OpenAI" },
   google: { icon: Bot, label: "Google" },
+  deepseek: { icon: Globe, label: "DeepSeek" },
 } as const;
 
 const toggleItemClasses =

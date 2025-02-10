@@ -7,10 +7,27 @@
   resolved "https://registry.npmjs.org/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
+"@ai-sdk/deepseek@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/deepseek/-/deepseek-0.1.8.tgz#babfa378875634fd4d333a080442f1b97e5b09c9"
+  integrity sha512-ZnugEqmkscB0an46I0Z6Ppor8YwOC2bIhWXkivkGbVdpQgpx43cPBrD3lyOyNEHIFwHtcrJF13S+4FNPzR0Gng==
+  dependencies:
+    "@ai-sdk/openai-compatible" "0.1.8"
+    "@ai-sdk/provider" "1.0.7"
+    "@ai-sdk/provider-utils" "2.1.6"
+
 "@ai-sdk/google@^1.1.11":
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/@ai-sdk/google/-/google-1.1.11.tgz#1b3f4527965bf2de5e35506971eb1c8d7e352c0a"
   integrity sha512-EcK20MTA3zNJKNOo3r52Y0N960lGL6UxUimt13HFk2RJ4dXPMWl7ZhWFgjwFXwW2QwdSPKqlMHYjne3xvKTBcQ==
+  dependencies:
+    "@ai-sdk/provider" "1.0.7"
+    "@ai-sdk/provider-utils" "2.1.6"
+
+"@ai-sdk/openai-compatible@0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@ai-sdk/openai-compatible/-/openai-compatible-0.1.8.tgz#714c6f0f2877f8f63f490e69940146c79b148895"
+  integrity sha512-o2WeZmkOgaaEHAIZfAdlAASotNemhWBzupUp7ql/vBKIrPDctbQS4K7XOvG7EZ1dshn0TxB+Ur7Q8HoWSeWPmA==
   dependencies:
     "@ai-sdk/provider" "1.0.7"
     "@ai-sdk/provider-utils" "2.1.6"
