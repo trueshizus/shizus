@@ -1,4 +1,4 @@
-import CVDynamic from "@/components/cv-dynamic";
+import DynamicMarkdown from "@/components/dynamic-markdown";
 import { SettingsProvider } from "@/contexts/settings-context";
 import { promises as fs } from "fs";
 import path from "path";
@@ -12,7 +12,7 @@ export default async function Home() {
         id="portal-root"
         className={`h-full py-4 px-2 grid place-items-center`}
       >
-        <CVDynamic />
+        <DynamicMarkdown />
       </main>
     </SettingsProvider>
   );

@@ -6,7 +6,7 @@ import ActionIcon from "./action-icon";
 import { cvComponents } from "./cv-md-components";
 import Terminal from "./terminal";
 
-export default function CVDynamic() {
+export default function DynamicMarkdown() {
   const {
     currentFont,
     fontSizes,
