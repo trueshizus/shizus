@@ -30,14 +30,7 @@ export default function CVDynamic() {
           </>
         }
       >
-        {true && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-            <div className="text-white flex items-center gap-2">
-              <span>Generating</span>
-              <Bot className="w-4 h-4 animate-bounce" />
-            </div>
-          </div>
-        )}
+        {isGenerating && <Loading />}
         <article
           className={`md:min-h-[297mm] md:min-w-[210mm] px-6 py-4 hyphens-auto ${currentFont.className}`}
         >
@@ -47,5 +40,19 @@ export default function CVDynamic() {
         </article>
       </Terminal>
     </>
+  );
+}
+
+function Loading() {
+  return (
+    <div className="absolute inset-0 bg-zinc-900/80 flex items-center justify-center ">
+      <div className="text-white flex items-center gap-2">
+        <span>Generating</span>
+        <div className="grid [grid-template-areas:'stack'] animate-bounce">
+          <Bot className="[grid-area:stack] w-5 h-5 " />
+          <Bot className="[grid-area:stack] w-5 h-5 animate-ping text-zinc-500" />
+        </div>
+      </div>
+    </div>
   );
 }

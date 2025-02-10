@@ -53,7 +53,7 @@ export type FontSizes = {
   li: number;
 };
 
-export type CVIntent = "default" | "formal" | "short" | "gen-z";
+export type CVIntent = "default" | "formal" | "short" | "artistic";
 
 type SettingsContextType = {
   selectedFont: keyof typeof fonts;

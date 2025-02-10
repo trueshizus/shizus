@@ -34,7 +34,7 @@ export default function Terminal({
         <div className="border border-zinc-200 max-w-4xl">
           <div className="flex items-center justify-between bg-zinc-200">
             <p
-              className={`text-zinc-900 px-2 font-mono text-sm flex-grow ${handleClass} cursor-move`}
+              className={`text-zinc-900 px-2 font-mono text-sm flex-grow ${handleClass} cursor-move `}
             >
               {title}
             </p>
