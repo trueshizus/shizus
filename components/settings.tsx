@@ -1,9 +1,9 @@
 "use client";
 
 import Portal from "@/components/portal";
+import FontSizeSelector from "@/components/settings/font-size-selector";
 import StyleSelector from "@/components/settings/style-selector";
 import Terminal from "@/components/terminal";
-import TextStyler from "@/components/text-styler";
 import { useState } from "react";
 import FontSelector from "./settings/font-selector";
 import ModelSelector from "./settings/model-selector";
@@ -63,7 +63,8 @@ export default function Settings() {
             >
               <div className="p-2 min-w-[200px] space-y-2">
                 <FontSelector />
-                <TextStyler />
+                <FontSizeSelector />
+
                 <ModelSelector />
                 <StyleSelector />
                 <RestoreDefault />

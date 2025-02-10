@@ -19,7 +19,7 @@ const tabsConfig: TabConfig[] = [
   { value: "li", icon: List, label: "LI", max: 48, key: "li" },
 ];
 
-export default function TextStyler() {
+export default function FontSizeSelector() {
   const { fontSizes, setFontSize, isGenerating } = useSettings();
 
   const handleSliderChange = (value: number[], key: keyof typeof fontSizes) => {

@@ -1,6 +1,6 @@
 "use server";
 
-import { CVIntent } from "@/contexts/settings-context";
+import { AIProvider, CVIntent } from "@/contexts/settings-context";
 import { deepseek } from "@ai-sdk/deepseek";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
@@ -41,7 +41,7 @@ const modelConfig = {
 export async function generate(
   markdownCV: string,
   intent: CVIntent,
-  provider: "openai" | "google"
+  provider: AIProvider
 ) {
   if (intent === "default") return { output: markdownCV };
 
