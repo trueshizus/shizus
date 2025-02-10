@@ -11,15 +11,15 @@ const intentConfig = {
 } as const;
 
 const toggleItemClasses =
-  " bg-zinc-900 px-2 py-1.5 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 data-[state=on]:bg-zinc-200 data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm cursor-pointer";
+  " bg-zinc-800 px-2 py-1.5 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 data-[state=on]:bg-zinc-200 data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm cursor-pointer grow";
 
 export default function StyleSelector() {
   const { intent, setIntent, isGenerating } = useSettings();
 
   return (
-    <div className="flex justify-center mt-6">
+    <div className="flex justify-center">
       <ToggleGroup.Root
-        className="inline-flex bg-zinc-800 p-1 shadow-inner space-x-1"
+        className="inline-flex bg-zinc-800 border border-zinc-700 shadow-inner space-x-1 w-full flex-grow"
         type="single"
         value={intent}
         onValueChange={(value: string | undefined) => {
