@@ -1,6 +1,13 @@
-import React from 'react'
-import Image, { ImageProps } from 'next/image'
+import Image, { ImageProps } from "next/image";
 
 export default function MdxImage(props: ImageProps) {
-  return <Image {...props} alt={props.alt} />;
+  return (
+    <div className="relative w-full sm:w-auto">
+      <Image
+        {...props}
+        alt={props.alt}
+        className={`max-w-full h-auto ${props.className || ""}`}
+      />
+    </div>
+  );
 }

@@ -10,7 +10,7 @@ export default async function Home() {
     <SettingsProvider defaultContent={content}>
       <main
         id="portal-root"
-        className={`md:py-12 py-4 grid place-items-center`}
+        className="md:py-12 py-4 px-2 grid place-items-center"
       >
         <DynamicMarkdown />
       </main>

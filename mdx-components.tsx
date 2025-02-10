@@ -8,7 +8,7 @@ type MDXComponentProps = {
 
 // Text components
 const Paragraph = ({ children }: MDXComponentProps) => (
-  <p className="text-sm my-2 leading-normal">{children}</p>
+  <p className="text-sm my-2 leading-normal ">{children}</p>
 );
 
 const InlineCode = ({ children }: MDXComponentProps) => <b>{children}</b>;
@@ -32,7 +32,7 @@ const UnorderedList = ({ children }: MDXComponentProps) => (
 );
 
 const OrderedList = ({ children }: MDXComponentProps) => (
-  <ol className="list-decimal ml-2 text-sm">{children}</ol>
+  <ol className="list-decimal text-sm list-inside">{children}</ol>
 );
 
 const ListItem = ({ children }: MDXComponentProps) => (

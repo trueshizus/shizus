@@ -22,6 +22,7 @@ const cvPrompt = (
 *   Keep all '#' and '##' headings.
 *   You may freely modify '###' headings and list elements to better fit the ${style} style.
 *   Output only the rewritten markdown CV. The cv must be below 10000 characters
+*   Do not wrap the output in \`\`\` tags.
 Here is the original CV:
 <MarkdownCV>
 ${markdownCV}
@@ -35,11 +36,9 @@ export async function generate(markdownCV: string, intent: CVIntent) {
 
   const prompt = cvPrompt(intent, markdownCV);
 
-  console.log(prompt);
-
   (async () => {
     const { textStream } = streamText({
-      model: openai("gpt-3.5-turbo"),
+      model: openai("gpt-4o-mini"),
       prompt,
     });
 

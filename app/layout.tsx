@@ -22,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={spaceMono.className}>
-      <body className="h-screen bg-zinc-900 min-w-[400px] w-full ">
+      <head>
+        <script
+          crossOrigin="anonymous"
+          src="//unpkg.com/react-scan/dist/auto.global.js"
+        />
+      </head>
+      <body className="h-screen bg-zinc-900 min-w-[375px] w-full ">
         {children}
         <Analytics />
         <SpeedInsights />
