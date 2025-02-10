@@ -54,6 +54,7 @@ export type FontSizes = {
 };
 
 export type CVIntent = "default" | "formal" | "short" | "artistic";
+export type AIProvider = "openai" | "google";
 
 type SettingsContextType = {
   selectedFont: keyof typeof fonts;
@@ -65,6 +66,8 @@ type SettingsContextType = {
   setIntent: (intent: CVIntent) => Promise<void>;
   generatedContent: string;
   isGenerating: boolean;
+  provider: AIProvider;
+  setProvider: (provider: AIProvider) => void;
   defaultContent: string;
 };
 
@@ -93,7 +96,7 @@ export function SettingsProvider({
   const [intent, setIntentState] = useState<CVIntent>("default");
   const [generatedContent, setGeneratedContent] = useState<string>("");
   const [isGenerating, setIsGenerating] = useState(false);
-
+  const [provider, setProvider] = useState<"openai" | "google">("openai");
   const setFontSize = (element: keyof FontSizes, size: number) => {
     setFontSizes((prev) => ({
       ...prev,
@@ -111,7 +114,7 @@ export function SettingsProvider({
 
     try {
       setIsGenerating(true);
-      const { output } = await generate(defaultContent, newIntent);
+      const { output } = await generate(defaultContent, newIntent, provider);
 
       setGeneratedContent("");
       if (typeof output === "string") {
@@ -142,6 +145,8 @@ export function SettingsProvider({
         generatedContent,
         isGenerating,
         defaultContent,
+        provider,
+        setProvider,
       }}
     >
       {children}

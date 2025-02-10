@@ -1,16 +1,18 @@
 "use server";
 
 import { CVIntent } from "@/contexts/settings-context";
+import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { createStreamableValue } from "ai/rsc";
 
-const styles = {
-  formal:
-    "formal and professional while preserving the information in the original CV",
+const styles: Record<CVIntent, string> = {
+  default: "",
   short: "short and concise, removing any unnecessary information",
   artistic:
     "modern and appealing to Gen Z employers, using emojis moderately and other modern formatting",
+  formal:
+    "formal and professional while preserving the information in the original CV",
 };
 
 type StyleOptions = keyof typeof styles;
@@ -29,8 +31,17 @@ ${markdownCV}
 </MarkdownCV>
 `;
 
-export async function generate(markdownCV: string, intent: CVIntent) {
+export async function generate(
+  markdownCV: string,
+  intent: CVIntent,
+  provider: "openai" | "google"
+) {
   if (intent === "default") return { output: markdownCV };
+
+  const model =
+    provider === "openai"
+      ? openai("gpt-4o-mini")
+      : google("gemini-2.0-flash-lite-preview-02-05");
 
   const stream = createStreamableValue("");
 
@@ -38,7 +49,7 @@ export async function generate(markdownCV: string, intent: CVIntent) {
 
   (async () => {
     const { textStream } = streamText({
-      model: openai("gpt-4o-mini"),
+      model,
       prompt,
     });
 

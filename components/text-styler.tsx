@@ -27,7 +27,7 @@ export default function TextStyler() {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="border border-zinc-700 bg-zinc-800">
       <Tabs defaultValue="h1">
         <TabsList className="grid w-full grid-cols-5">
           {tabsConfig.map((tab) => (
@@ -41,26 +41,22 @@ export default function TextStyler() {
           ))}
         </TabsList>
 
-        <ul className="grid grid-cols-5 p-1">
-          {tabsConfig.map((tab) => (
-            <li key={tab.value} className="flex items-center justify-center">
-              <p className="text-xs relative text-zinc-500">
+        {tabsConfig.map((tab) => (
+          <TabsContent key={tab.value} value={tab.value} className="px-2 py-4">
+            <div className="grid grid-cols-5">
+              <Slider
+                value={[fontSizes[tab.key]]}
+                onValueChange={(value) => handleSliderChange(value, tab.key)}
+                max={tab.max}
+                step={1}
+                aria-label={`${tab.label} font size slider`}
+                disabled={isGenerating}
+                className="col-span-4"
+              />
+              <p className="text-sm relative text-zinc-500 col-span-1 text-center">
                 {fontSizes[tab.key]}px
               </p>
-            </li>
-          ))}
-        </ul>
-
-        {tabsConfig.map((tab) => (
-          <TabsContent key={tab.value} value={tab.value} className="mt-4">
-            <Slider
-              value={[fontSizes[tab.key]]}
-              onValueChange={(value) => handleSliderChange(value, tab.key)}
-              max={tab.max}
-              step={1}
-              aria-label={`${tab.label} font size slider`}
-              disabled={isGenerating}
-            />
+            </div>
           </TabsContent>
         ))}
       </Tabs>

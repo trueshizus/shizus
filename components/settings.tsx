@@ -1,11 +1,13 @@
 "use client";
 
-import FontSelector from "@/components/font-selector";
 import Portal from "@/components/portal";
-import SettingsIntent from "@/components/settings-intent";
+import StyleSelector from "@/components/settings/style-selector";
 import Terminal from "@/components/terminal";
 import TextStyler from "@/components/text-styler";
 import { useState } from "react";
+import FontSelector from "./settings/font-selector";
+import ModelSelector from "./settings/model-selector";
+import RestoreDefault from "./settings/restore-default";
 
 export default function Settings() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,10 +61,13 @@ export default function Settings() {
                 </button>
               }
             >
-              <div className="p-4 min-w-[200px] space-y-4">
+              <div className="p-4 min-w-[200px] space-y-2">
                 <FontSelector />
                 <TextStyler />
-                <SettingsIntent />
+
+                <ModelSelector />
+                <StyleSelector />
+                <RestoreDefault />
               </div>
             </Terminal>
           </div>
