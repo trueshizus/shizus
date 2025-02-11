@@ -6,7 +6,7 @@ import { Bot, Globe, Sparkles } from "lucide-react";
 
 const modelConfig = {
   openai: { icon: Sparkles, label: "OpenAI" },
-  google: { icon: Bot, label: "Google" },
+  google: { icon: Bot, label: "Gemini" },
   deepseek: { icon: Globe, label: "DeepSeek" },
 } as const;
 

@@ -10,9 +10,10 @@ export default function DynamicMarkdown() {
   const {
     currentFont,
     fontSizes,
-    generatedContent,
+
     isGenerating,
     defaultContent,
+    content,
   } = useSettings();
 
   const dynamicComponents = cvComponents(fontSizes);
@@ -35,7 +36,7 @@ export default function DynamicMarkdown() {
           className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${currentFont.className}`}
         >
           <ReactMarkdown components={dynamicComponents}>
-            {generatedContent || defaultContent}
+            {content || defaultContent}
           </ReactMarkdown>
         </article>
       </Terminal>

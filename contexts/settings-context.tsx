@@ -9,8 +9,7 @@ import {
   Space_Mono,
 } from "next/font/google";
 
-import { generate } from "@/actions/generate-cv";
-import { readStreamableValue } from "ai/rsc";
+import { useCompletion } from "@ai-sdk/react";
 
 const spaceMono = Space_Mono({
   subsets: ["latin"],
@@ -63,12 +62,12 @@ type SettingsContextType = {
   fontSizes: FontSizes;
   setFontSize: (element: keyof FontSizes, size: number) => void;
   intent: CVIntent;
-  setIntent: (intent: CVIntent) => Promise<void>;
-  generatedContent: string;
+  setIntent: (intent: CVIntent) => void;
   isGenerating: boolean;
   provider: AIProvider;
   setProvider: (provider: AIProvider) => void;
   defaultContent: string;
+  content: string;
 };
 
 const defaultFontSizes: FontSizes = {
@@ -94,9 +93,8 @@ export function SettingsProvider({
     useState<keyof typeof fonts>("Space Mono");
   const [fontSizes, setFontSizes] = useState<FontSizes>(defaultFontSizes);
   const [intent, setIntentState] = useState<CVIntent>("default");
-  const [generatedContent, setGeneratedContent] = useState<string>("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [provider, setProvider] = useState<"openai" | "google">("openai");
+  const [provider, setProvider] = useState<AIProvider>("openai");
+
   const setFontSize = (element: keyof FontSizes, size: number) => {
     setFontSizes((prev) => ({
       ...prev,
@@ -104,33 +102,34 @@ export function SettingsProvider({
     }));
   };
 
+  const { completion, complete, isLoading } = useCompletion({
+    api: "/api/chat",
+    body: {
+      markdownCV: defaultContent,
+      intent,
+      provider,
+    },
+  });
+
   const setIntent = async (newIntent: CVIntent) => {
     setIntentState(newIntent);
-
-    if (newIntent === "default") {
-      setGeneratedContent(defaultContent);
-      return;
-    }
+    if (newIntent === "default") return;
 
     try {
-      setIsGenerating(true);
-      const { output } = await generate(defaultContent, newIntent, provider);
-
-      setGeneratedContent("");
-      if (typeof output === "string") {
-        setGeneratedContent(output);
-      } else {
-        for await (const delta of readStreamableValue(output)) {
-          setGeneratedContent((prev) => `${prev}${delta}`);
-        }
-      }
+      await complete("", {
+        body: {
+          markdownCV: defaultContent,
+          intent: newIntent,
+          provider,
+        },
+      });
     } catch (error) {
       console.error("Generation failed:", error);
-      setGeneratedContent(defaultContent);
-    } finally {
-      setIsGenerating(false);
     }
   };
+
+  const content =
+    intent === "default" ? defaultContent : completion ?? defaultContent;
 
   return (
     <SettingsContext.Provider
@@ -142,11 +141,11 @@ export function SettingsProvider({
         setFontSize,
         intent,
         setIntent,
-        generatedContent,
-        isGenerating,
-        defaultContent,
+        isGenerating: isLoading,
         provider,
         setProvider,
+        defaultContent,
+        content,
       }}
     >
       {children}
