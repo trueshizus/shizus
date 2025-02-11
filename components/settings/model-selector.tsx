@@ -1,6 +1,7 @@
 "use client";
 
-import { AIProvider, useSettings } from "@/contexts/settings-context";
+import { useSettings } from "@/contexts/settings-context";
+import { AIProvider } from "@/hooks/use-cv-generation";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Bot, Globe, Sparkles } from "lucide-react";
 
