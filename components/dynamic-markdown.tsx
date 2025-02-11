@@ -8,7 +8,7 @@ import { cvComponents } from "./cv-md-components";
 import Terminal from "./terminal";
 
 export default function DynamicMarkdown() {
-  const { isGenerating, defaultContent, content } = useSettings();
+  const { isGenerating, content } = useSettings();
 
   const { selectedFont, fontSizes } = useFont();
 
@@ -18,7 +18,6 @@ export default function DynamicMarkdown() {
     <>
       <Terminal
         title="CV"
-        loading={isGenerating}
         actions={
           <>
             <ActionIcon icon="settings" />
@@ -32,7 +31,7 @@ export default function DynamicMarkdown() {
           className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${fonts[selectedFont].className}`}
         >
           <ReactMarkdown components={dynamicComponents}>
-            {content || defaultContent}
+            {content}
           </ReactMarkdown>
         </article>
       </Terminal>
