@@ -1,16 +1,19 @@
 // next.config.mjs
-import { default as nextMDX } from '@next/mdx';
-import remarkMath from 'remark-math';
+import createMDX from '@next/mdx';
 import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
 
-const withMDX = nextMDX({
-  extension: /\.mdx?$/,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  // Other Next.js config options can go here
+};
+
+const withMDX = createMDX({
   options: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
-  }
+  },
 });
 
-export default withMDX({
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-});
+export default withMDX(nextConfig);
