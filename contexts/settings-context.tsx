@@ -1,19 +1,8 @@
 "use client";
-import { useCompletion } from "@ai-sdk/react";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { useCVGeneration } from "@/hooks/use-cv-generation";
+import { createContext, ReactNode, useContext } from "react";
 
-export type CVIntent = "default" | "formal" | "short" | "artistic";
-export type AIProvider = "openai" | "google";
-
-type SettingsContextType = {
-  intent: CVIntent;
-  setIntent: (intent: CVIntent) => void;
-  isGenerating: boolean;
-  provider: AIProvider;
-  setProvider: (provider: AIProvider) => void;
-  defaultContent: string;
-  content: string;
-};
+type SettingsContextType = ReturnType<typeof useCVGeneration>;
 
 const SettingsContext = createContext<SettingsContextType | undefined>(
   undefined
@@ -26,50 +15,10 @@ export function SettingsProvider({
   children: ReactNode;
   defaultContent: string;
 }) {
-  const [intent, setIntentState] = useState<CVIntent>("default");
-  const [provider, setProvider] = useState<AIProvider>("openai");
-
-  const { completion, complete, isLoading } = useCompletion({
-    api: "/api/chat",
-    body: {
-      markdownCV: defaultContent,
-      intent,
-      provider,
-    },
-  });
-
-  const setIntent = async (newIntent: CVIntent) => {
-    setIntentState(newIntent);
-    if (newIntent === "default") return;
-
-    try {
-      await complete("", {
-        body: {
-          markdownCV: defaultContent,
-          intent: newIntent,
-          provider,
-        },
-      });
-    } catch (error) {
-      console.error("Generation failed:", error);
-    }
-  };
-
-  const content =
-    intent === "default" ? defaultContent : completion ?? defaultContent;
+  const cvGeneration = useCVGeneration(defaultContent);
 
   return (
-    <SettingsContext.Provider
-      value={{
-        intent,
-        setIntent,
-        isGenerating: isLoading,
-        provider,
-        setProvider,
-        defaultContent,
-        content,
-      }}
-    >
+    <SettingsContext.Provider value={cvGeneration}>
       {children}
     </SettingsContext.Provider>
   );
