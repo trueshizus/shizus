@@ -1,6 +1,6 @@
 "use server";
 
-import { AIProvider, CVIntent } from "@/contexts/settings-context";
+import { AIProvider, CVIntent } from "@/hooks/use-cv-generation";
 import { deepseek } from "@ai-sdk/deepseek";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
