@@ -28,7 +28,7 @@ ${markdownCV}
 
 const modelConfig = {
   openai: openai("gpt-4o-mini"),
-  google: google("gemini-2.0-flash"),
+  google: google("gemini-2.0-flash-001"),
   deepseek: deepseek("deepseek-chat"),
 } as const;
 
