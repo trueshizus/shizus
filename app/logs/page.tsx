@@ -7,7 +7,7 @@ import path from "path";
 const directoryPath = path.join(process.cwd(), "entries");
 
 const getPost = async () => {
-  let posts: { filename: string; content: React.ReactElement }[] = [];
+  const posts: { filename: string; content: React.ReactElement }[] = [];
   try {
     const files = fs
       .readdirSync(directoryPath)

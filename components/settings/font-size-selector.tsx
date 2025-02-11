@@ -6,7 +6,7 @@ import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
 
 type TabConfig = {
   value: string;
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   label: string;
   max: number;
   key: keyof FontSizes;

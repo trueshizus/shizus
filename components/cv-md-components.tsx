@@ -1,11 +1,12 @@
-import { FontSizes } from "@/contexts/settings-context";
+import { FontSizes } from "@/contexts/font-context";
 import { FC } from "react";
 import type { Components } from "react-markdown";
 
-interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {}
-interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {}
-interface ListItemProps extends React.HTMLAttributes<HTMLLIElement> {}
-interface UnorderedListProps extends React.HTMLAttributes<HTMLUListElement> {}
+// Remove empty interfaces and use HTML attribute types directly
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
+type ParagraphProps = React.HTMLAttributes<HTMLParagraphElement>;
+type ListItemProps = React.HTMLAttributes<HTMLLIElement>;
+type UnorderedListProps = React.HTMLAttributes<HTMLUListElement>;
 
 const H1: FC<HeadingProps> = ({ children, ...props }) => (
   <h1 className="font-bold " {...props}>
