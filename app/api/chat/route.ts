@@ -43,8 +43,6 @@ export async function POST(req: Request) {
     provider: AIProvider;
   } = await req.json();
 
-  console.log(intent);
-
   const model = modelConfig[provider];
   const prompt = cvPrompt(intent, markdownCV);
 

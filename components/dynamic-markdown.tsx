@@ -1,4 +1,5 @@
 "use client";
+import { fonts, useFont } from "@/contexts/font-context";
 import { useSettings } from "@/contexts/settings-context";
 import { Bot } from "lucide-react";
 import ReactMarkdown from "react-markdown";
@@ -7,14 +8,9 @@ import { cvComponents } from "./cv-md-components";
 import Terminal from "./terminal";
 
 export default function DynamicMarkdown() {
-  const {
-    currentFont,
-    fontSizes,
+  const { isGenerating, defaultContent, content } = useSettings();
 
-    isGenerating,
-    defaultContent,
-    content,
-  } = useSettings();
+  const { selectedFont, fontSizes } = useFont();
 
   const dynamicComponents = cvComponents(fontSizes);
 
@@ -33,7 +29,7 @@ export default function DynamicMarkdown() {
       >
         {isGenerating && <Loading />}
         <article
-          className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${currentFont.className}`}
+          className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${fonts[selectedFont].className}`}
         >
           <ReactMarkdown components={dynamicComponents}>
             {content || defaultContent}
