@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "katex/dist/katex.min.css";
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
@@ -33,8 +31,6 @@ export default function RootLayout({
       </head>
       <body className="h-screen bg-zinc-900 min-w-[375px] w-full ">
         {children}
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
