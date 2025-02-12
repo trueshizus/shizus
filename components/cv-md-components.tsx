@@ -1,4 +1,4 @@
-import { FontSizes } from "@/contexts/font-context";
+import { FontSizes, fonts } from "@/lib/fonts";
 import { FC } from "react";
 import type { Components } from "react-markdown";
 
@@ -48,24 +48,41 @@ const Em: FC<ListItemProps> = ({ children, ...props }) => (
   <small {...props}>{children}</small>
 );
 
-export const cvComponents = (fontSizes: FontSizes): Components => ({
-  h1: (props) => (
-    <H1 {...props} style={{ ...props.style, fontSize: fontSizes.h1 }} />
-  ),
-  h2: (props) => (
-    <H2 {...props} style={{ ...props.style, fontSize: fontSizes.h2 }} />
-  ),
-  h3: (props) => (
-    <H3 {...props} style={{ ...props.style, fontSize: fontSizes.h3 }} />
-  ),
-  p: (props) => (
-    <P {...props} style={{ ...props.style, fontSize: fontSizes.p }} />
-  ),
-  li: (props) => (
-    <Li {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
-  ),
-  em: (props) => (
-    <Em {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
-  ),
-  ul: (props) => <Ul {...props} />,
-});
+export const cvComponents = ({
+  fontSizes,
+  selectedFont,
+}: {
+  fontSizes: FontSizes;
+  selectedFont: keyof typeof fonts;
+}): Components => {
+  const currentFont = fonts[selectedFont];
+
+  return {
+    h1: (props) => (
+      <H1
+        {...props}
+        style={{
+          ...props.style,
+          fontSize: fontSizes.h1,
+          fontFamily: currentFont.style.fontFamily,
+        }}
+      />
+    ),
+    h2: (props) => (
+      <H2 {...props} style={{ ...props.style, fontSize: fontSizes.h2 }} />
+    ),
+    h3: (props) => (
+      <H3 {...props} style={{ ...props.style, fontSize: fontSizes.h3 }} />
+    ),
+    p: (props) => (
+      <P {...props} style={{ ...props.style, fontSize: fontSizes.p }} />
+    ),
+    li: (props) => (
+      <Li {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
+    ),
+    em: (props) => (
+      <Em {...props} style={{ ...props.style, fontSize: fontSizes.li }} />
+    ),
+    ul: (props) => <Ul {...props} />,
+  };
+};

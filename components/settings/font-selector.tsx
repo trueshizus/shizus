@@ -5,10 +5,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { fonts, useFont } from "@/contexts/font-context";
+import { fonts } from "@/lib/fonts";
+import { useQueryState } from "nuqs";
 
 export default function FontSelector() {
-  const { selectedFont, setSelectedFont } = useFont();
+  const [selectedFont, setSelectedFont] = useQueryState("font", {
+    defaultValue: "Space Mono" as keyof typeof fonts,
+  });
 
   return (
     <Select

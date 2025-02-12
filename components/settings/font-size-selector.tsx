@@ -1,8 +1,9 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FontSizes, useFont } from "@/contexts/font-context";
 import { useSettings } from "@/contexts/settings-context";
+import { FontSizes, defaultFontSizes } from "@/lib/fonts";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
+import { useQueryState } from "nuqs";
 
 type TabConfig = {
   value: string;
@@ -21,11 +22,18 @@ const tabsConfig: TabConfig[] = [
 ];
 
 export default function FontSizeSelector() {
-  const { fontSizes, setFontSize } = useFont();
+  const [fontSizes, setFontSizes] = useQueryState("fontSizes", {
+    defaultValue: defaultFontSizes,
+    parse: (value: string) => JSON.parse(value) as FontSizes,
+    serialize: (value: FontSizes) => JSON.stringify(value),
+  });
   const { isGenerating } = useSettings();
 
-  const handleSliderChange = (value: number[], key: keyof typeof fontSizes) => {
-    setFontSize(key, value[0]);
+  const handleSliderChange = (value: number[], key: keyof FontSizes) => {
+    setFontSizes({
+      ...fontSizes,
+      [key]: value[0],
+    });
   };
 
   return (
