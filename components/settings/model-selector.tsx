@@ -1,9 +1,9 @@
 "use client";
 
-import { useSettings } from "@/contexts/settings-context";
-import { AIProvider } from "@/hooks/use-cv-generation";
+import { ModelOptions } from "@/lib/cv-gen-prompt";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Bot, Globe, Sparkles } from "lucide-react";
+import { useQueryState } from "nuqs";
 
 const modelConfig = {
   openai: { icon: Sparkles, label: "OpenAI" },
@@ -11,11 +11,17 @@ const modelConfig = {
   deepseek: { icon: Globe, label: "DeepSeek" },
 } as const;
 
+type ModelConfig = keyof typeof modelConfig;
+
 const toggleItemClasses =
   " bg-zinc-800 px-2 py-1.5 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 data-[state=on]:bg-zinc-200 data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm cursor-pointer grow";
 
 export default function ModelSelector() {
-  const { provider, setProvider, isGenerating } = useSettings();
+  const [provider, setProvider] = useQueryState<ModelOptions>("model", {
+    defaultValue: "none",
+    parse: (value): ModelOptions => value as ModelOptions,
+    serialize: (value) => value,
+  });
 
   return (
     <div className="flex justify-center ">
@@ -24,15 +30,15 @@ export default function ModelSelector() {
         type="single"
         value={provider}
         onValueChange={(value: string | undefined) => {
-          if (value) setProvider(value as AIProvider);
+          if (value) setProvider(value as ModelOptions);
         }}
         aria-label="Select AI model"
-        disabled={isGenerating}
+        // disabled={isGenerating}
       >
         {(
           Object.entries(modelConfig) as [
-            AIProvider,
-            (typeof modelConfig)[keyof typeof modelConfig]
+            ModelOptions,
+            (typeof modelConfig)[ModelConfig]
           ][]
         ).map(([value, { icon: Icon, label }]) => (
           <ToggleGroup.Item

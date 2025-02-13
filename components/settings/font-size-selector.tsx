@@ -1,6 +1,5 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSettings } from "@/contexts/settings-context";
 import { FontSizes, defaultFontSizes } from "@/lib/fonts";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
 import { useQueryState } from "nuqs";
@@ -27,7 +26,7 @@ export default function FontSizeSelector() {
     parse: (value: string) => JSON.parse(value) as FontSizes,
     serialize: (value: FontSizes) => JSON.stringify(value),
   });
-  const { isGenerating } = useSettings();
+  // const { isGenerating } = useSettings();
 
   const handleSliderChange = (value: number[], key: keyof FontSizes) => {
     setFontSizes({
@@ -60,7 +59,7 @@ export default function FontSizeSelector() {
                 max={tab.max}
                 step={1}
                 aria-label={`${tab.label} font size slider`}
-                disabled={isGenerating}
+                // disabled={isGenerating}
                 className="col-span-4"
               />
               <p className="text-sm relative text-zinc-500 col-span-1 text-center">
