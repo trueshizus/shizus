@@ -88,7 +88,7 @@ export default function Settings({
               <div className="p-2 min-w-[200px] space-y-4">
                 <section className="flex flex-col gap-2">
                   <h3 className="text-sm font-medium text-center">
-                    Font & Size
+                    Font & Sizes
                   </h3>
                   <FontSelector />
                   <FontSizeSelector />
