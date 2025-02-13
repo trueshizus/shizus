@@ -7,6 +7,7 @@ This is my personal website, where I share my projects and thoughts.
 ## Getting Started
 
 1. Clone the repository
+
 ```bash
 gh repo clone trueshizus/shizus
 ```
@@ -30,4 +31,4 @@ yarn dev
 - TailwindCSS
 - TypeScript
 - MDX
-- Vercel
+- Digital Ocean
