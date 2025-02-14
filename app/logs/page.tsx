@@ -1,4 +1,4 @@
-import ActionIcon from "@/components/action-icon";
+import MenuLink from "@/components/menu-link";
 import Post from "@/components/post";
 import Terminal from "@/components/terminal";
 import fs from "fs";
@@ -29,7 +29,7 @@ export default async function Page() {
 
   return (
     <main className="md:py-12 py-4 px-2 grid place-items-center">
-      <Terminal title="logs" actions={<ActionIcon icon="close" />}>
+      <Terminal title="logs" actions={<MenuLink />}>
         {posts.map(({ filename, content }) => (
           <Post key={filename} filename={filename} content={content} />
         ))}
