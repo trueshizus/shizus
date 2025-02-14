@@ -38,7 +38,7 @@ export default function Settings({
 
       {isOpen && (
         <Portal>
-          <div className="absolute z-50">
+          <div className="absolute z-50 hidden md:block">
             <Terminal
               title="Settings"
               defaultPosition={{ x: 50, y: 100 }}
