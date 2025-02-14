@@ -29,24 +29,6 @@ export default function Settings({
   const [provider] = useModel();
   const [style] = useIntent();
 
-  const calculateInitialPosition = () => {
-    if (typeof window === "undefined") return { x: 0, y: 0 };
-
-    const mainTerminal = document.querySelector("#portal-root article");
-    if (!mainTerminal) return { x: 0, y: 0 };
-
-    const terminalRect = mainTerminal.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-
-    const centerX = viewportWidth / 2 - terminalRect.width / 2;
-    const centerY = terminalRect.top + window.scrollY;
-
-    return {
-      x: centerX,
-      y: centerY,
-    };
-  };
-
   return (
     <>
       <button
@@ -64,7 +46,7 @@ export default function Settings({
           <div className="absolute z-50">
             <Terminal
               title="Settings"
-              defaultPosition={calculateInitialPosition()}
+              defaultPosition={{ x: 50, y: 100 }}
               handleClass="settings-handle"
               actions={
                 <button
@@ -97,7 +79,7 @@ export default function Settings({
 
                   <button
                     disabled={provider === "none"}
-                    className="w-full bg-zinc-800 px-2 py-1 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-zinc-800 px-2 py-2 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed h-8"
                     onClick={async () => {
                       if (provider === "none") return;
                       setIsLoading(true);

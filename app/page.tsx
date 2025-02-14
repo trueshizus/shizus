@@ -8,10 +8,7 @@ export default async function Home() {
   const content = await fs.readFile(filePath, "utf8");
 
   return (
-    <main
-      id="portal-root"
-      className="md:py-12 py-4 px-2 grid place-items-center"
-    >
+    <main className="md:py-12 py-4 px-2 grid place-items-center">
       <Suspense>
         <DynamicMarkdown defaultContent={content} />
       </Suspense>
