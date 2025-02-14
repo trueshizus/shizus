@@ -78,8 +78,8 @@ export default function Settings({
               }
             >
               {isLoading && <span>Generating...</span>}
-              <div className="p-2 min-w-[200px] space-y-4">
-                <section className="flex flex-col gap-2">
+              <div className="min-w-[200px]">
+                <section className="flex flex-col gap-2.5 p-2">
                   <h3 className="text-sm font-medium text-center">
                     Font & Sizes
                   </h3>
@@ -87,7 +87,7 @@ export default function Settings({
                   <FontSizeSelector />
                 </section>
 
-                <section className="flex flex-col gap-2">
+                <section className="flex flex-col gap-2.5  p-2">
                   <h3 className="text-sm font-medium text-center">
                     AI Customization
                   </h3>
@@ -97,7 +97,7 @@ export default function Settings({
 
                   <button
                     disabled={provider === "none"}
-                    className="w-full bg-zinc-800 px-2 py-3 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-zinc-800 px-2 py-1 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     onClick={async () => {
                       if (provider === "none") return;
                       setIsLoading(true);
@@ -116,7 +116,7 @@ export default function Settings({
                   </button>
                 </section>
 
-                <section className="flex flex-col gap-2">
+                <section className="flex flex-col gap-2.5 p-2">
                   <RestoreDefault />
                 </section>
               </div>

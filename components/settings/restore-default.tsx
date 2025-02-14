@@ -21,7 +21,7 @@ export default function RestoreDefault() {
       <button
         onClick={handleRestore}
         // disabled={isGenerating}
-        className="w-full bg-zinc-800 px-2 py-3 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-zinc-800 px-2 py-2 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 hover:bg-zinc-700 border border-zinc-700 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <Monitor className="w-3 h-3 mr-2 inline" />
         Restore default
