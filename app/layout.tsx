@@ -1,7 +1,6 @@
 import "katex/dist/katex.min.css";
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
-import Script from "next/script";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "./globals.css";
 
@@ -22,16 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={spaceMono.className}>
-      <head>
-        {process.env.NODE_ENV === "development" && (
-          <Script
-            crossOrigin="anonymous"
-            src="//unpkg.com/react-scan/dist/auto.global.js"
-          />
-        )}
-      </head>
+      <head></head>
       <body className="h-screen bg-zinc-900 min-w-[375px] w-full ">
-        <NuqsAdapter>{children}</NuqsAdapter>
+        <NuqsAdapter>
+          <div id="portal-root" />
+          {children}
+        </NuqsAdapter>
       </body>
     </html>
   );

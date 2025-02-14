@@ -1,36 +1,15 @@
 "use server";
 
-import { AIProvider, CVIntent } from "@/hooks/use-cv-generation";
+import {
+  AiProvider,
+  generateCvPrompt,
+  StyleOptions,
+} from "@/lib/cv-gen-prompt";
 import { deepseek } from "@ai-sdk/deepseek";
 import { google } from "@ai-sdk/google";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { createStreamableValue } from "ai/rsc";
-
-const styles: Record<CVIntent, string> = {
-  default: "",
-  short: "short and concise, removing any unnecessary information",
-  artistic:
-    "modern and appealing to Gen Z employers, using emojis moderately and other modern formatting",
-  formal:
-    "formal and professional while preserving the information in the original CV",
-};
-
-type StyleOptions = keyof typeof styles;
-
-const cvPrompt = (
-  style: StyleOptions,
-  markdownCV: string
-) => `You are an expert resume writer. Rewrite the following CV in markdown format to be ${styles[style]}.
-*   Keep all '#' and '##' headings.
-*   You may freely modify '###' headings and list elements to better fit the ${style} style.
-*   Output only the rewritten markdown CV. The cv must be below 10000 characters
-*   Do not wrap the output in \`\`\` tags.
-Here is the original CV:
-<MarkdownCV>
-${markdownCV}
-</MarkdownCV>
-`;
 
 const modelConfig = {
   openai: openai("gpt-4o-mini"),
@@ -38,22 +17,13 @@ const modelConfig = {
   deepseek: deepseek("deepseek-chat"),
 } as const;
 
-export async function generate(
-  markdownCV: string,
-  intent: CVIntent,
-  provider: AIProvider
-) {
-  if (intent === "default") return { output: markdownCV };
-
-  const model = modelConfig[provider];
-
+export async function generate(model: AiProvider, style: StyleOptions) {
   const stream = createStreamableValue("");
-
-  const prompt = cvPrompt(intent, markdownCV);
+  const prompt = generateCvPrompt(style);
 
   (async () => {
     const { textStream } = streamText({
-      model,
+      model: modelConfig[model],
       prompt,
     });
 

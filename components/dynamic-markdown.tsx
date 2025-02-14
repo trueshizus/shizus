@@ -1,26 +1,26 @@
 "use client";
-import { useSettings } from "@/contexts/settings-context";
-import { defaultFontSizes, fonts, FontSizes } from "@/lib/fonts";
+
+import useFont from "@/hooks/useFont";
+import useFontSizes from "@/hooks/useFontSizes";
+import { fonts } from "@/lib/fonts";
 import { Bot } from "lucide-react";
-import { useQueryState } from "nuqs";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import ActionIcon from "./action-icon";
 import { cvComponents } from "./cv-md-components";
+import DownloadAsPdf from "./download-as-pdf";
+import MenuLink from "./menu-link";
+import Settings from "./settings";
 import Terminal from "./terminal";
 
-export default function DynamicMarkdown() {
-  const { isGenerating, content } = useSettings();
+type Props = {
+  defaultContent: string;
+};
 
-  const [selectedFont] = useQueryState("font", {
-    defaultValue: "Space Mono" as keyof typeof fonts,
-    parse: (value: string) => value as keyof typeof fonts,
-  });
-
-  const [fontSizes] = useQueryState("fontSizes", {
-    defaultValue: defaultFontSizes,
-    parse: (value: string) => JSON.parse(value) as FontSizes,
-    serialize: (value: FontSizes) => JSON.stringify(value),
-  });
+export default function DynamicMarkdown({ defaultContent }: Props) {
+  const [selectedFont] = useFont();
+  const [fontSizes] = useFontSizes();
+  const [isLoading, setIsLoading] = useState(false);
+  const [generation, setGeneration] = useState<string>(defaultContent);
 
   const dynamicComponents = cvComponents({
     fontSizes,
@@ -33,18 +33,22 @@ export default function DynamicMarkdown() {
         title="CV"
         actions={
           <>
-            <ActionIcon icon="settings" />
-            <ActionIcon icon="download" />
-            <ActionIcon icon="close" />
+            <Settings
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              setGeneration={setGeneration}
+            />
+            <DownloadAsPdf />
+            <MenuLink />
           </>
         }
       >
-        {isGenerating && <Loading />}
+        {isLoading && <Loading />}
         <article
           className={`md:min-h-[297mm] md:w-[210mm] px-4 py-2 text-pretty	${fonts[selectedFont].className}`}
         >
           <ReactMarkdown components={dynamicComponents}>
-            {content}
+            {generation}
           </ReactMarkdown>
         </article>
       </Terminal>

@@ -48,6 +48,9 @@ export type FontSizes = {
   li: number;
 };
 
+export const maxFontSize = 50;
+export const minFontSize = 10;
+
 export const defaultFontSizes: FontSizes = {
   h1: 20,
   h2: 18,

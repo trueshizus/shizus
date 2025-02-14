@@ -1,7 +1,7 @@
 "use client";
 
-import { useSettings } from "@/contexts/settings-context";
-import { AIProvider } from "@/hooks/use-cv-generation";
+import useModel from "@/hooks/useModel";
+import { ModelOptions } from "@/lib/cv-gen-prompt";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Bot, Globe, Sparkles } from "lucide-react";
 
@@ -11,28 +11,30 @@ const modelConfig = {
   deepseek: { icon: Globe, label: "DeepSeek" },
 } as const;
 
+type ModelConfig = keyof typeof modelConfig;
+
 const toggleItemClasses =
   " bg-zinc-800 px-2 py-1.5 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 data-[state=on]:bg-zinc-200 data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm cursor-pointer grow";
 
 export default function ModelSelector() {
-  const { provider, setProvider, isGenerating } = useSettings();
+  const [model, setModel] = useModel();
 
   return (
     <div className="flex justify-center ">
       <ToggleGroup.Root
         className="inline-flex bg-zinc-800 border border-zinc-700 shadow-inner space-x-1 w-full flex-grow"
         type="single"
-        value={provider}
+        value={model}
         onValueChange={(value: string | undefined) => {
-          if (value) setProvider(value as AIProvider);
+          if (value) setModel(value as ModelOptions);
         }}
         aria-label="Select AI model"
-        disabled={isGenerating}
+        // disabled={isGenerating}
       >
         {(
           Object.entries(modelConfig) as [
-            AIProvider,
-            (typeof modelConfig)[keyof typeof modelConfig]
+            ModelOptions,
+            (typeof modelConfig)[ModelConfig]
           ][]
         ).map(([value, { icon: Icon, label }]) => (
           <ToggleGroup.Item

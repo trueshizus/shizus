@@ -1,33 +1,30 @@
 import { Slider } from "@/components/ui/slider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useSettings } from "@/contexts/settings-context";
-import { FontSizes, defaultFontSizes } from "@/lib/fonts";
+import useFontSizes from "@/hooks/useFontSizes";
+import { FontSizes, maxFontSize, minFontSize } from "@/lib/fonts";
 import { AlignLeft, Heading1, Heading2, Heading3, List } from "lucide-react";
-import { useQueryState } from "nuqs";
 
 type TabConfig = {
   value: string;
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   label: string;
-  max: number;
   key: keyof FontSizes;
 };
 
 const tabsConfig: TabConfig[] = [
-  { value: "h1", icon: Heading1, label: "H1", max: 72, key: "h1" },
-  { value: "h2", icon: Heading2, label: "H2", max: 64, key: "h2" },
-  { value: "h3", icon: Heading3, label: "H3", max: 56, key: "h3" },
-  { value: "p", icon: AlignLeft, label: "P", max: 48, key: "p" },
-  { value: "li", icon: List, label: "LI", max: 48, key: "li" },
+  { value: "h1", icon: Heading1, label: "H1", key: "h1" },
+  { value: "h2", icon: Heading2, label: "H2", key: "h2" },
+  { value: "h3", icon: Heading3, label: "H3", key: "h3" },
+  { value: "p", icon: AlignLeft, label: "P", key: "p" },
+  { value: "li", icon: List, label: "LI", key: "li" },
 ];
 
-export default function FontSizeSelector() {
-  const [fontSizes, setFontSizes] = useQueryState("fontSizes", {
-    defaultValue: defaultFontSizes,
-    parse: (value: string) => JSON.parse(value) as FontSizes,
-    serialize: (value: FontSizes) => JSON.stringify(value),
-  });
-  const { isGenerating } = useSettings();
+type Props = {
+  isLoading?: boolean;
+};
+
+export default function FontSizeSelector({ isLoading = false }: Props) {
+  const [fontSizes, setFontSizes] = useFontSizes();
 
   const handleSliderChange = (value: number[], key: keyof FontSizes) => {
     setFontSizes({
@@ -57,10 +54,11 @@ export default function FontSizeSelector() {
               <Slider
                 value={[fontSizes[tab.key]]}
                 onValueChange={(value) => handleSliderChange(value, tab.key)}
-                max={tab.max}
+                max={maxFontSize}
+                min={minFontSize}
                 step={1}
                 aria-label={`${tab.label} font size slider`}
-                disabled={isGenerating}
+                disabled={isLoading}
                 className="col-span-4"
               />
               <p className="text-sm relative text-zinc-500 col-span-1 text-center">
