@@ -20,10 +20,10 @@ const tabsConfig: TabConfig[] = [
 ];
 
 type Props = {
-  isLoading?: boolean;
+  disabled: boolean;
 };
 
-export default function FontSizeSelector({ isLoading = false }: Props) {
+export default function FontSizeSelector({ disabled }: Props) {
   const [fontSizes, setFontSizes] = useFontSizes();
 
   const handleSliderChange = (value: number[], key: keyof FontSizes) => {
@@ -42,6 +42,7 @@ export default function FontSizeSelector({ isLoading = false }: Props) {
               key={tab.value}
               value={tab.value}
               className="flex items-center justify-center"
+              disabled={disabled}
             >
               <tab.icon className="w-4 h-4" />
             </TabsTrigger>
@@ -58,7 +59,7 @@ export default function FontSizeSelector({ isLoading = false }: Props) {
                 min={minFontSize}
                 step={1}
                 aria-label={`${tab.label} font size slider`}
-                disabled={isLoading}
+                disabled={disabled}
                 className="col-span-4"
               />
               <p className="text-sm relative text-zinc-500 col-span-1 text-center">

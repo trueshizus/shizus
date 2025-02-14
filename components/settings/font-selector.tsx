@@ -8,7 +8,7 @@ import {
 import { fonts } from "@/lib/fonts";
 import { useQueryState } from "nuqs";
 
-export default function FontSelector() {
+export default function FontSelector({ disabled }: { disabled: boolean }) {
   const [selectedFont, setSelectedFont] = useQueryState("font", {
     defaultValue: "Space Mono" as keyof typeof fonts,
   });
@@ -17,6 +17,7 @@ export default function FontSelector() {
     <Select
       value={selectedFont}
       onValueChange={(value) => setSelectedFont(value as keyof typeof fonts)}
+      disabled={disabled}
     >
       <SelectTrigger className="w-full bg-zinc-800 border border-zinc-700">
         <SelectValue placeholder="Select Font" />

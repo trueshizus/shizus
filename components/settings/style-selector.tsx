@@ -17,7 +17,11 @@ const styles: Record<StyleOptions, string> = {
   formal: "Formal & Professional",
 };
 
-export default function StyleSelector() {
+type Props = {
+  disabled: boolean;
+};
+
+export default function StyleSelector({ disabled }: Props) {
   const [intent, setIntent] = useIntent();
   const [model] = useModel();
 
@@ -26,7 +30,7 @@ export default function StyleSelector() {
       <Select
         value={intent}
         onValueChange={(value: StyleOptions) => setIntent(value)}
-        disabled={model === "none"}
+        disabled={model === "none" || disabled}
       >
         <SelectTrigger className="w-full bg-zinc-800 border border-zinc-700">
           <SelectValue placeholder="Select Style" />
