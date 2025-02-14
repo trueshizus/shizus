@@ -7,7 +7,6 @@ export type AiProvider = "openai" | "google" | "deepseek";
 export type ModelOptions = "none" | AiProvider;
 
 const styles = {
-  default: "",
   short: "short and concise, removing any unnecessary information",
   artistic:
     "modern and appealing to Gen Z employers, using emojis moderately and other modern formatting",

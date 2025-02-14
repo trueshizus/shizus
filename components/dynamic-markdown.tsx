@@ -1,8 +1,9 @@
 "use client";
 
-import { defaultFontSizes, fonts, FontSizes } from "@/lib/fonts";
+import useFont from "@/hooks/useFont";
+import useFontSizes from "@/hooks/useFontSizes";
+import { fonts } from "@/lib/fonts";
 import { Bot } from "lucide-react";
-import { useQueryState } from "nuqs";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { cvComponents } from "./cv-md-components";
@@ -16,19 +17,10 @@ type Props = {
 };
 
 export default function DynamicMarkdown({ defaultContent }: Props) {
+  const [selectedFont] = useFont();
+  const [fontSizes] = useFontSizes();
   const [isLoading, setIsLoading] = useState(false);
   const [generation, setGeneration] = useState<string>(defaultContent);
-
-  const [selectedFont] = useQueryState("font", {
-    defaultValue: "Space Mono" as keyof typeof fonts,
-    parse: (value: string) => value as keyof typeof fonts,
-  });
-
-  const [fontSizes] = useQueryState("fontSizes", {
-    defaultValue: defaultFontSizes,
-    parse: (value: string) => JSON.parse(value) as FontSizes,
-    serialize: (value: FontSizes) => JSON.stringify(value),
-  });
 
   const dynamicComponents = cvComponents({
     fontSizes,

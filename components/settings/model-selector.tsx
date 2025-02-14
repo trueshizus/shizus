@@ -1,9 +1,9 @@
 "use client";
 
+import useModel from "@/hooks/useModel";
 import { ModelOptions } from "@/lib/cv-gen-prompt";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { Bot, Globe, Sparkles } from "lucide-react";
-import { useQueryState } from "nuqs";
 
 const modelConfig = {
   openai: { icon: Sparkles, label: "OpenAI" },
@@ -17,11 +17,7 @@ const toggleItemClasses =
   " bg-zinc-800 px-2 py-1.5 text-xs font-medium transition-all hover:ring-1 hover:ring-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-300 text-zinc-200 data-[state=on]:bg-zinc-200 data-[state=on]:text-zinc-800 data-[state=on]:shadow-sm cursor-pointer grow";
 
 export default function ModelSelector() {
-  const [provider, setProvider] = useQueryState<ModelOptions>("model", {
-    defaultValue: "none",
-    parse: (value): ModelOptions => value as ModelOptions,
-    serialize: (value) => value,
-  });
+  const [provider, setProvider] = useModel();
 
   return (
     <div className="flex justify-center ">
