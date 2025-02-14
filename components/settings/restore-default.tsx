@@ -2,20 +2,25 @@
 
 import useFont from "@/hooks/useFont";
 import useFontSizes from "@/hooks/useFontSizes";
+import useModel from "@/hooks/useModel";
 import { defaultFontSizes, fonts } from "@/lib/fonts";
 import { Monitor } from "lucide-react";
 
 export default function RestoreDefault() {
   const [selectedFont, setSelectedFont] = useFont();
   const [fontSizes, setFontSizes] = useFontSizes();
+  const [model, setModel] = useModel();
 
   const handleRestore = () => {
     setSelectedFont("Space Mono" as keyof typeof fonts);
     setFontSizes(defaultFontSizes);
+    setModel("none");
   };
 
   const isDefault =
-    selectedFont === "Space Mono" && fontSizes === defaultFontSizes;
+    selectedFont === "Space Mono" &&
+    fontSizes === defaultFontSizes &&
+    model === "none";
 
   return (
     <div className="flex justify-center align-baseline">
