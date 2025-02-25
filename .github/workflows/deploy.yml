@@ -5,6 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Add permissions needed for the workload identity federation
+permissions:
+  contents: read
+  id-token: write
+
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   REGION: us-central1
