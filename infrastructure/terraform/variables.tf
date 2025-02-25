@@ -39,26 +39,4 @@ variable "initial_image" {
   default     = "gcr.io/cloudrun/hello"
 }
 
-variable "openai_api_key" {
-  description = "OpenAI API Key"
-  type        = string
-  sensitive   = true
-}
-
-variable "google_ai_api_key" {
-  description = "Google Generative AI API Key"
-  type        = string
-  sensitive   = true
-}
-
-variable "deepseek_api_key" {
-  description = "Deepseek API Key"
-  type        = string
-  sensitive   = true
-}
-
-variable "digital_ocean_api_key" {
-  description = "Digital Ocean API Key"
-  type        = string
-  sensitive   = true
-} 
+# API keys are now managed by GitHub Actions during deployment 

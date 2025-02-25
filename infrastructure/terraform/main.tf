@@ -50,7 +50,9 @@ resource "google_cloud_run_v2_service" "service" {
   
   template {
     containers {
-      image = var.initial_image
+      # Using a placeholder image for initial setup
+      # Actual deployments will be managed by GitHub Actions
+      image = "gcr.io/cloudrun/hello"
       
       resources {
         limits = {
@@ -59,30 +61,7 @@ resource "google_cloud_run_v2_service" "service" {
         }
       }
       
-      env {
-        name  = "NODE_ENV"
-        value = "production"
-      }
-      
-      env {
-        name  = "OPENAI_API_KEY"
-        value = var.openai_api_key
-      }
-      
-      env {
-        name  = "GOOGLE_GENERATIVE_AI_API_KEY"
-        value = var.google_ai_api_key
-      }
-      
-      env {
-        name  = "DEEPSEEK_API_KEY"
-        value = var.deepseek_api_key
-      }
-      
-      env {
-        name  = "DIGITAL_OCEAN_API_KEY"
-        value = var.digital_ocean_api_key
-      }
+      # Environment variables will be set by GitHub Actions during deployment
     }
   }
 
