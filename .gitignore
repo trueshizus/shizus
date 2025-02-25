@@ -41,4 +41,5 @@ infrastructure/terraform/.terraform.lock.hcl
 infrastructure/terraform/terraform.tfstate
 infrastructure/terraform/terraform.tfstate.backup
 infrastructure/terraform/terraform.tfvars
+infrastructure/terraform/terraform.tfvars.secrets
 service-account-key.json
