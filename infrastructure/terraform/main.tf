@@ -63,6 +63,26 @@ resource "google_cloud_run_v2_service" "service" {
         name  = "NODE_ENV"
         value = "production"
       }
+      
+      env {
+        name  = "OPENAI_API_KEY"
+        value = var.openai_api_key
+      }
+      
+      env {
+        name  = "GOOGLE_GENERATIVE_AI_API_KEY"
+        value = var.google_ai_api_key
+      }
+      
+      env {
+        name  = "DEEPSEEK_API_KEY"
+        value = var.deepseek_api_key
+      }
+      
+      env {
+        name  = "DIGITAL_OCEAN_API_KEY"
+        value = var.digital_ocean_api_key
+      }
     }
   }
 

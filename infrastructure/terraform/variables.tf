@@ -10,7 +10,7 @@ variable "project_name" {
 }
 
 variable "create_project" {
-  description = "Whether to create a new Google Cloud project"
+  description = "Whether to create a new project or use an existing one"
   type        = bool
   default     = false
 }
@@ -34,7 +34,31 @@ variable "zone" {
 }
 
 variable "initial_image" {
-  description = "The initial Docker image to deploy to Cloud Run"
+  description = "The initial image to deploy to Cloud Run"
   type        = string
   default     = "gcr.io/cloudrun/hello"
+}
+
+variable "openai_api_key" {
+  description = "OpenAI API Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "google_ai_api_key" {
+  description = "Google Generative AI API Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "deepseek_api_key" {
+  description = "Deepseek API Key"
+  type        = string
+  sensitive   = true
+}
+
+variable "digital_ocean_api_key" {
+  description = "Digital Ocean API Key"
+  type        = string
+  sensitive   = true
 } 

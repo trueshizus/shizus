@@ -50,7 +50,8 @@ jobs:
             --image ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/shizus-app:${{ github.sha }} \
             --region ${{ env.REGION }} \
             --platform managed \
-            --allow-unauthenticated
+            --allow-unauthenticated \
+            --set-env-vars="OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }},GOOGLE_GENERATIVE_AI_API_KEY=${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }},DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }},DIGITAL_OCEAN_API_KEY=${{ secrets.DIGITAL_OCEAN_API_KEY }}"
 
       - name: Show deployed service URL
         run: gcloud run services describe ${{ env.SERVICE }} --region ${{ env.REGION }} --format 'value(status.url)'
