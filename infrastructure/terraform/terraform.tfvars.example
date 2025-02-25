@@ -1,0 +1,7 @@
+project_id         = "shizus-website"
+project_name       = "Shizus Website"
+create_project     = true
+billing_account_id = "XXXXXX-XXXXXX-XXXXXX"
+region             = "us-central1"
+zone               = "us-central1-a"
+initial_image      = "gcr.io/cloudrun/hello" 
