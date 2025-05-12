@@ -58,6 +58,8 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --allow-unauthenticated \
+            --cpu 0.5 \
+            --memory 256Mi \
             --set-env-vars="NODE_ENV=production,OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }},GOOGLE_GENERATIVE_AI_API_KEY=${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }},DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }},DIGITAL_OCEAN_API_KEY=${{ secrets.DIGITAL_OCEAN_API_KEY }}"
 
       - name: Show deployed service URL

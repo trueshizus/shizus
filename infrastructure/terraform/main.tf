@@ -56,8 +56,8 @@ resource "google_cloud_run_v2_service" "service" {
       
       resources {
         limits = {
-          cpu    = "1"
-          memory = "512Mi"
+          cpu    = "0.5" # Adjusted to match deployment script
+          memory = "256Mi" # Adjusted to match deployment script
         }
       }
       
@@ -79,4 +79,4 @@ resource "google_cloud_run_service_iam_member" "public" {
 # Output the Cloud Run URL
 output "service_url" {
   value = google_cloud_run_v2_service.service.uri
-} 
+}
