@@ -13,8 +13,8 @@ import { createStreamableValue } from "ai/rsc";
 
 const modelConfig = {
   openai: openai("gpt-4o-mini"),
-  google: google("gemini-2.0-flash"),
-  deepseek: deepseek("deepseek-chat"),
+  google: google("gemini-2.0-flash-exp"),
+  deepseek: deepseek("deepseek-v3"),
 } as const;
 
 export async function generate(model: AiProvider, style: StyleOptions) {
