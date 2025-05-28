@@ -1,11 +1,11 @@
 // next.config.mjs
-import createMDX from '@next/mdx';
-import rehypeKatex from 'rehype-katex';
-import remarkMath from 'remark-math';
+import createMDX from "@next/mdx";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  pageExtensions: ["js", "jsx", "ts", "tsx", "mdx"],
   // Other Next.js config options can go here
 };
 
