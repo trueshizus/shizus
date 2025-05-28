@@ -6,8 +6,6 @@ import remarkMath from 'remark-math';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-  // Enable standalone output for containerization
-  output: 'standalone',
   // Other Next.js config options can go here
 };
 
