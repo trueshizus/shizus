@@ -29,7 +29,7 @@ export default function Page() {
                 autoFocus
                 defaultChecked
               />
-              <Link href="/">CV</Link>
+              <Link href="/cv">CV</Link>
             </label>
           </div>
           <div className="group has-[:checked]:bg-zinc-200 has-[:checked]:text-zinc-900">
