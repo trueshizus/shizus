@@ -31,22 +31,10 @@ yarn dev
 - TailwindCSS
 - TypeScript
 - MDX
-- Google Cloud Platform
 
 ## Deployment
 
-This project is deployed to Vercel for optimal performance and cost efficiency.
-
-### Prerequisites
-
-- A Vercel account
-- GitHub repository connected to Vercel
-
-### Deployment
-
-The application automatically deploys to Vercel whenever changes are pushed to the main branch.
-
-You can also manually trigger a deployment from the Vercel dashboard.
+- Nelify
 
 ### Local Development
 
